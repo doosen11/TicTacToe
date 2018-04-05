@@ -15,9 +15,20 @@ namespace TicTacToeClient {
         }
 
         public bool game_over;
+
+        public class PLAYER {
+            string username;
+            int status;
+            int player;
+        }
+        
         enum player { 
             one,
             two
+        };
+        enum status { 
+            Waiting,
+            Playing
         };
 
         public void Form1_Load(object sender, EventArgs e) {
