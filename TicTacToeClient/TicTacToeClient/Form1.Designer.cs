@@ -32,13 +32,16 @@
             this.button7 = new System.Windows.Forms.Button();
             this.button8 = new System.Windows.Forms.Button();
             this.button9 = new System.Windows.Forms.Button();
-            this.listBox1 = new System.Windows.Forms.ListBox();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.button10 = new System.Windows.Forms.Button();
-            this.button11 = new System.Windows.Forms.Button();
-            this.button12 = new System.Windows.Forms.Button();
-            this.button13 = new System.Windows.Forms.Button();
-            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.lst_users = new System.Windows.Forms.ListBox();
+            this.msg_box = new System.Windows.Forms.TextBox();
+            this.end_game_button = new System.Windows.Forms.Button();
+            this.login_button = new System.Windows.Forms.Button();
+            this.logout_button = new System.Windows.Forms.Button();
+            this.request_game_button = new System.Windows.Forms.Button();
+            this.txtSend = new System.Windows.Forms.TextBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.username_textbox = new System.Windows.Forms.TextBox();
+            this.send_button = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // button1
@@ -122,78 +125,113 @@
             this.button9.UseVisualStyleBackColor = true;
             this.button9.Click += new System.EventHandler(this.button9_Click);
             // 
-            // listBox1
+            // lst_users
             // 
-            this.listBox1.FormattingEnabled = true;
-            this.listBox1.Location = new System.Drawing.Point(22, 57);
-            this.listBox1.Name = "listBox1";
-            this.listBox1.Size = new System.Drawing.Size(158, 199);
-            this.listBox1.TabIndex = 9;
+            this.lst_users.FormattingEnabled = true;
+            this.lst_users.Location = new System.Drawing.Point(22, 57);
+            this.lst_users.Name = "lst_users";
+            this.lst_users.Size = new System.Drawing.Size(158, 199);
+            this.lst_users.TabIndex = 9;
             // 
-            // textBox1
+            // msg_box
             // 
-            this.textBox1.Location = new System.Drawing.Point(495, 57);
-            this.textBox1.Multiline = true;
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(247, 275);
-            this.textBox1.TabIndex = 10;
-            this.textBox1.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
+            this.msg_box.Location = new System.Drawing.Point(495, 57);
+            this.msg_box.Multiline = true;
+            this.msg_box.Name = "msg_box";
+            this.msg_box.Size = new System.Drawing.Size(247, 275);
+            this.msg_box.TabIndex = 10;
+            this.msg_box.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
             // 
-            // button10
+            // end_game_button
             // 
-            this.button10.Location = new System.Drawing.Point(105, 277);
-            this.button10.Name = "button10";
-            this.button10.Size = new System.Drawing.Size(75, 23);
-            this.button10.TabIndex = 11;
-            this.button10.Text = "button10";
-            this.button10.UseVisualStyleBackColor = true;
+            this.end_game_button.Location = new System.Drawing.Point(118, 277);
+            this.end_game_button.Name = "end_game_button";
+            this.end_game_button.Size = new System.Drawing.Size(86, 23);
+            this.end_game_button.TabIndex = 11;
+            this.end_game_button.Text = "End Game";
+            this.end_game_button.UseVisualStyleBackColor = true;
+            this.end_game_button.Click += new System.EventHandler(this.end_game_button_Click);
             // 
-            // button11
+            // login_button
             // 
-            this.button11.Location = new System.Drawing.Point(22, 306);
-            this.button11.Name = "button11";
-            this.button11.Size = new System.Drawing.Size(75, 23);
-            this.button11.TabIndex = 12;
-            this.button11.Text = "button11";
-            this.button11.UseVisualStyleBackColor = true;
+            this.login_button.Location = new System.Drawing.Point(22, 306);
+            this.login_button.Name = "login_button";
+            this.login_button.Size = new System.Drawing.Size(90, 23);
+            this.login_button.TabIndex = 12;
+            this.login_button.Text = "Login";
+            this.login_button.UseVisualStyleBackColor = true;
+            this.login_button.Click += new System.EventHandler(this.login_button_Click);
             // 
-            // button12
+            // logout_button
             // 
-            this.button12.Location = new System.Drawing.Point(103, 306);
-            this.button12.Name = "button12";
-            this.button12.Size = new System.Drawing.Size(75, 23);
-            this.button12.TabIndex = 13;
-            this.button12.Text = "button12";
-            this.button12.UseVisualStyleBackColor = true;
+            this.logout_button.Location = new System.Drawing.Point(118, 306);
+            this.logout_button.Name = "logout_button";
+            this.logout_button.Size = new System.Drawing.Size(86, 23);
+            this.logout_button.TabIndex = 13;
+            this.logout_button.Text = "Logout";
+            this.logout_button.UseVisualStyleBackColor = true;
+            this.logout_button.Click += new System.EventHandler(this.logout_button_Click);
             // 
-            // button13
+            // request_game_button
             // 
-            this.button13.Location = new System.Drawing.Point(22, 277);
-            this.button13.Name = "button13";
-            this.button13.Size = new System.Drawing.Size(75, 23);
-            this.button13.TabIndex = 14;
-            this.button13.Text = "button13";
-            this.button13.UseVisualStyleBackColor = true;
+            this.request_game_button.Location = new System.Drawing.Point(22, 277);
+            this.request_game_button.Name = "request_game_button";
+            this.request_game_button.Size = new System.Drawing.Size(90, 23);
+            this.request_game_button.TabIndex = 14;
+            this.request_game_button.Text = "Request Game";
+            this.request_game_button.UseVisualStyleBackColor = true;
+            this.request_game_button.Click += new System.EventHandler(this.request_game_button_Click);
             // 
-            // textBox2
+            // txtSend
             // 
-            this.textBox2.Location = new System.Drawing.Point(495, 350);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(247, 20);
-            this.textBox2.TabIndex = 15;
+            this.txtSend.Location = new System.Drawing.Point(495, 350);
+            this.txtSend.Name = "txtSend";
+            this.txtSend.Size = new System.Drawing.Size(247, 20);
+            this.txtSend.TabIndex = 15;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(19, 27);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(37, 13);
+            this.label1.TabIndex = 16;
+            this.label1.Text = "I AM:";
+            this.label1.Click += new System.EventHandler(this.label1_Click_1);
+            // 
+            // username_textbox
+            // 
+            this.username_textbox.Location = new System.Drawing.Point(62, 27);
+            this.username_textbox.Name = "username_textbox";
+            this.username_textbox.Size = new System.Drawing.Size(100, 20);
+            this.username_textbox.TabIndex = 17;
+            // 
+            // send_button
+            // 
+            this.send_button.Location = new System.Drawing.Point(414, 347);
+            this.send_button.Name = "send_button";
+            this.send_button.Size = new System.Drawing.Size(75, 23);
+            this.send_button.TabIndex = 18;
+            this.send_button.Text = "Send";
+            this.send_button.UseVisualStyleBackColor = true;
+            this.send_button.Click += new System.EventHandler(this.send_button_Click);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(754, 420);
-            this.Controls.Add(this.textBox2);
-            this.Controls.Add(this.button13);
-            this.Controls.Add(this.button12);
-            this.Controls.Add(this.button11);
-            this.Controls.Add(this.button10);
-            this.Controls.Add(this.textBox1);
-            this.Controls.Add(this.listBox1);
+            this.Controls.Add(this.send_button);
+            this.Controls.Add(this.username_textbox);
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.txtSend);
+            this.Controls.Add(this.request_game_button);
+            this.Controls.Add(this.logout_button);
+            this.Controls.Add(this.login_button);
+            this.Controls.Add(this.end_game_button);
+            this.Controls.Add(this.msg_box);
+            this.Controls.Add(this.lst_users);
             this.Controls.Add(this.button9);
             this.Controls.Add(this.button8);
             this.Controls.Add(this.button7);
@@ -221,13 +259,16 @@
         private System.Windows.Forms.Button button7;
         private System.Windows.Forms.Button button8;
         private System.Windows.Forms.Button button9;
-        private System.Windows.Forms.ListBox listBox1;
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.Button button10;
-        private System.Windows.Forms.Button button11;
-        private System.Windows.Forms.Button button12;
-        private System.Windows.Forms.Button button13;
-        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.ListBox lst_users;
+        private System.Windows.Forms.TextBox msg_box;
+        private System.Windows.Forms.Button end_game_button;
+        private System.Windows.Forms.Button login_button;
+        private System.Windows.Forms.Button logout_button;
+        private System.Windows.Forms.Button request_game_button;
+        private System.Windows.Forms.TextBox txtSend;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.TextBox username_textbox;
+        private System.Windows.Forms.Button send_button;
     }
 }
 

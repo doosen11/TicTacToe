@@ -1,1 +1,8 @@
 C:\Users\Dawson\Documents\GitHub\TicTacToe\TicTacToeServer\TicTacToeServer\bin\Debug\TicTacToeServer.exe.config
+C:\Users\Dawson\Documents\GitHub\TicTacToe\TicTacToeServer\TicTacToeServer\bin\Debug\TicTacToeServer.exe
+C:\Users\Dawson\Documents\GitHub\TicTacToe\TicTacToeServer\TicTacToeServer\bin\Debug\TicTacToeServer.pdb
+C:\Users\Dawson\Documents\GitHub\TicTacToe\TicTacToeServer\TicTacToeServer\obj\Debug\TicTacToeServer.Form1.resources
+C:\Users\Dawson\Documents\GitHub\TicTacToe\TicTacToeServer\TicTacToeServer\obj\Debug\TicTacToeServer.Properties.Resources.resources
+C:\Users\Dawson\Documents\GitHub\TicTacToe\TicTacToeServer\TicTacToeServer\obj\Debug\TicTacToeServer.csproj.GenerateResource.Cache
+C:\Users\Dawson\Documents\GitHub\TicTacToe\TicTacToeServer\TicTacToeServer\obj\Debug\TicTacToeServer.exe
+C:\Users\Dawson\Documents\GitHub\TicTacToe\TicTacToeServer\TicTacToeServer\obj\Debug\TicTacToeServer.pdb
