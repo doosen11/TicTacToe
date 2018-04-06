@@ -154,7 +154,7 @@ namespace TTTServer
                     //echo the received data back to all clients
                     for (int i = 0; i < clientSockets.Count; i++)
                     {
-                        Send2Client(clientSockets[i].msock, receivedData);
+                        send_to_client(clientSockets[i].msock, receivedData);
                     }
 
                     break;
@@ -187,7 +187,7 @@ namespace TTTServer
 
 
         // Callback for BeginSend
-        void Send2Client(Socket sock, string message)
+        void send_to_client(Socket sock, string message)
         {
             byte[] bins = Encoding.ASCII.GetBytes(message);
             sock.BeginSend(bins,0, bins.Length, SocketFlags.None, new AsyncCallback(SendData), sock);
