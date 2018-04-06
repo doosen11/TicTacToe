@@ -11,7 +11,7 @@ using System.Net;
 using System.Net.Sockets;
 using System.IO;
 
-namespace Async_Server_pubchat
+namespace TTTServer
 {
    
     public partial class Form1 : Form

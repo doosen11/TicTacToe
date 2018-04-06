@@ -12,7 +12,7 @@ using System.Net.Sockets;
 using System.IO;
 using System.Threading;
 
-namespace Client_Async_PubChat
+namespace TTTClient
 {
     public partial class Form1 : Form
     {
@@ -35,7 +35,7 @@ namespace Client_Async_PubChat
                 myusername = Microsoft.VisualBasic.Interaction.InputBox("Enter Username:", "User Login", "");
                 Application.DoEvents();
             } while (myusername == "");
-            lblMe.Text = myusername;
+            textBox2.Text = myusername;
             Application.DoEvents();
 
             btnConnect.Enabled = false; //disable this button so that the user cannot press it again
@@ -100,12 +100,12 @@ namespace Client_Async_PubChat
         {
             if (txtSend.Text == "")
             {
-                MessageBox.Show("Cannot send blank. Please enter a text message.", "User Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("I can't send nothing...", "User Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
             if (btnConnect.Enabled == true)
             {
-                MessageBox.Show("Idiot! You must login to the server first!!!", "User Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Dude. Login First...", "User Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 

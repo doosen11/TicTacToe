@@ -1,4 +1,4 @@
-﻿namespace Async_Server_pubchat
+﻿namespace TTTServer
 {
     partial class Form1
     {

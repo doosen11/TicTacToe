@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace Async_Server_pubchat
+namespace TTTServer
 {
     static class Program
     {

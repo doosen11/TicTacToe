@@ -7,8 +7,8 @@
     <ProjectGuid>{ACF632AB-90DF-48A5-91DC-913026AE50AC}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Client_Async_PubChat</RootNamespace>
-    <AssemblyName>Client_Async_PubChat</AssemblyName>
+    <RootNamespace>TTTClient</RootNamespace>
+    <AssemblyName>TTTClient</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -64,6 +64,7 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
