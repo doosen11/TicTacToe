@@ -40,15 +40,15 @@
             this.button1 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.textBox2 = new System.Windows.Forms.TextBox();
-            this.button3 = new System.Windows.Forms.Button();
-            this.button4 = new System.Windows.Forms.Button();
-            this.button5 = new System.Windows.Forms.Button();
-            this.button6 = new System.Windows.Forms.Button();
-            this.button7 = new System.Windows.Forms.Button();
-            this.button8 = new System.Windows.Forms.Button();
-            this.button9 = new System.Windows.Forms.Button();
-            this.button10 = new System.Windows.Forms.Button();
-            this.button11 = new System.Windows.Forms.Button();
+            this.TTT_button_0 = new System.Windows.Forms.Button();
+            this.TTT_button_1 = new System.Windows.Forms.Button();
+            this.TTT_button_2 = new System.Windows.Forms.Button();
+            this.TTT_button_3 = new System.Windows.Forms.Button();
+            this.TTT_button_4 = new System.Windows.Forms.Button();
+            this.TTT_button_5 = new System.Windows.Forms.Button();
+            this.TTT_button_6 = new System.Windows.Forms.Button();
+            this.TTT_button_7 = new System.Windows.Forms.Button();
+            this.TTT_button_8 = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // textBox1
@@ -156,101 +156,101 @@
             this.textBox2.Size = new System.Drawing.Size(100, 20);
             this.textBox2.TabIndex = 21;
             // 
-            // button3
+            // TTT_button_0
             // 
-            this.button3.Location = new System.Drawing.Point(275, 81);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(77, 77);
-            this.button3.TabIndex = 22;
-            this.button3.Text = "button3";
-            this.button3.UseVisualStyleBackColor = true;
+            this.TTT_button_0.Location = new System.Drawing.Point(275, 81);
+            this.TTT_button_0.Name = "TTT_button_0";
+            this.TTT_button_0.Size = new System.Drawing.Size(77, 77);
+            this.TTT_button_0.TabIndex = 22;
+            this.TTT_button_0.UseVisualStyleBackColor = true;
+            this.TTT_button_0.Click += new System.EventHandler(this.TTT_button_0_Click);
             // 
-            // button4
+            // TTT_button_1
             // 
-            this.button4.Location = new System.Drawing.Point(358, 81);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(77, 77);
-            this.button4.TabIndex = 23;
-            this.button4.Text = "button4";
-            this.button4.UseVisualStyleBackColor = true;
+            this.TTT_button_1.Location = new System.Drawing.Point(358, 81);
+            this.TTT_button_1.Name = "TTT_button_1";
+            this.TTT_button_1.Size = new System.Drawing.Size(77, 77);
+            this.TTT_button_1.TabIndex = 23;
+            this.TTT_button_1.UseVisualStyleBackColor = true;
+            this.TTT_button_1.Click += new System.EventHandler(this.TTT_button_1_Click);
             // 
-            // button5
+            // TTT_button_2
             // 
-            this.button5.Location = new System.Drawing.Point(441, 81);
-            this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(77, 77);
-            this.button5.TabIndex = 24;
-            this.button5.Text = "button5";
-            this.button5.UseVisualStyleBackColor = true;
+            this.TTT_button_2.Location = new System.Drawing.Point(441, 81);
+            this.TTT_button_2.Name = "TTT_button_2";
+            this.TTT_button_2.Size = new System.Drawing.Size(77, 77);
+            this.TTT_button_2.TabIndex = 24;
+            this.TTT_button_2.UseVisualStyleBackColor = true;
+            this.TTT_button_2.Click += new System.EventHandler(this.TTT_button_2_Click);
             // 
-            // button6
+            // TTT_button_3
             // 
-            this.button6.Location = new System.Drawing.Point(275, 164);
-            this.button6.Name = "button6";
-            this.button6.Size = new System.Drawing.Size(77, 77);
-            this.button6.TabIndex = 25;
-            this.button6.Text = "button6";
-            this.button6.UseVisualStyleBackColor = true;
+            this.TTT_button_3.Location = new System.Drawing.Point(275, 164);
+            this.TTT_button_3.Name = "TTT_button_3";
+            this.TTT_button_3.Size = new System.Drawing.Size(77, 77);
+            this.TTT_button_3.TabIndex = 25;
+            this.TTT_button_3.UseVisualStyleBackColor = true;
+            this.TTT_button_3.Click += new System.EventHandler(this.TTT_button_3_Click);
             // 
-            // button7
+            // TTT_button_4
             // 
-            this.button7.Location = new System.Drawing.Point(358, 164);
-            this.button7.Name = "button7";
-            this.button7.Size = new System.Drawing.Size(77, 77);
-            this.button7.TabIndex = 26;
-            this.button7.Text = "button7";
-            this.button7.UseVisualStyleBackColor = true;
+            this.TTT_button_4.Location = new System.Drawing.Point(358, 164);
+            this.TTT_button_4.Name = "TTT_button_4";
+            this.TTT_button_4.Size = new System.Drawing.Size(77, 77);
+            this.TTT_button_4.TabIndex = 26;
+            this.TTT_button_4.UseVisualStyleBackColor = true;
+            this.TTT_button_4.Click += new System.EventHandler(this.TTT_button_4_Click);
             // 
-            // button8
+            // TTT_button_5
             // 
-            this.button8.Location = new System.Drawing.Point(441, 164);
-            this.button8.Name = "button8";
-            this.button8.Size = new System.Drawing.Size(77, 77);
-            this.button8.TabIndex = 27;
-            this.button8.Text = "button8";
-            this.button8.UseVisualStyleBackColor = true;
+            this.TTT_button_5.Location = new System.Drawing.Point(441, 164);
+            this.TTT_button_5.Name = "TTT_button_5";
+            this.TTT_button_5.Size = new System.Drawing.Size(77, 77);
+            this.TTT_button_5.TabIndex = 27;
+            this.TTT_button_5.UseVisualStyleBackColor = true;
+            this.TTT_button_5.Click += new System.EventHandler(this.TTT_button_5_Click);
             // 
-            // button9
+            // TTT_button_6
             // 
-            this.button9.Location = new System.Drawing.Point(275, 247);
-            this.button9.Name = "button9";
-            this.button9.Size = new System.Drawing.Size(77, 77);
-            this.button9.TabIndex = 28;
-            this.button9.Text = "button9";
-            this.button9.UseVisualStyleBackColor = true;
+            this.TTT_button_6.Location = new System.Drawing.Point(275, 247);
+            this.TTT_button_6.Name = "TTT_button_6";
+            this.TTT_button_6.Size = new System.Drawing.Size(77, 77);
+            this.TTT_button_6.TabIndex = 28;
+            this.TTT_button_6.UseVisualStyleBackColor = true;
+            this.TTT_button_6.Click += new System.EventHandler(this.TTT_button_6_Click);
             // 
-            // button10
+            // TTT_button_7
             // 
-            this.button10.Location = new System.Drawing.Point(358, 247);
-            this.button10.Name = "button10";
-            this.button10.Size = new System.Drawing.Size(77, 77);
-            this.button10.TabIndex = 29;
-            this.button10.Text = "button10";
-            this.button10.UseVisualStyleBackColor = true;
+            this.TTT_button_7.Location = new System.Drawing.Point(358, 247);
+            this.TTT_button_7.Name = "TTT_button_7";
+            this.TTT_button_7.Size = new System.Drawing.Size(77, 77);
+            this.TTT_button_7.TabIndex = 29;
+            this.TTT_button_7.UseVisualStyleBackColor = true;
+            this.TTT_button_7.Click += new System.EventHandler(this.TTT_button_7_Click);
             // 
-            // button11
+            // TTT_button_8
             // 
-            this.button11.Location = new System.Drawing.Point(441, 247);
-            this.button11.Name = "button11";
-            this.button11.Size = new System.Drawing.Size(77, 77);
-            this.button11.TabIndex = 30;
-            this.button11.Text = "button11";
-            this.button11.UseVisualStyleBackColor = true;
+            this.TTT_button_8.Location = new System.Drawing.Point(441, 247);
+            this.TTT_button_8.Name = "TTT_button_8";
+            this.TTT_button_8.Size = new System.Drawing.Size(77, 77);
+            this.TTT_button_8.TabIndex = 30;
+            this.TTT_button_8.UseVisualStyleBackColor = true;
+            this.TTT_button_8.Click += new System.EventHandler(this.TTT_button_8_Click);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(898, 543);
-            this.Controls.Add(this.button11);
-            this.Controls.Add(this.button10);
-            this.Controls.Add(this.button9);
-            this.Controls.Add(this.button8);
-            this.Controls.Add(this.button7);
-            this.Controls.Add(this.button6);
-            this.Controls.Add(this.button5);
-            this.Controls.Add(this.button4);
-            this.Controls.Add(this.button3);
+            this.Controls.Add(this.TTT_button_8);
+            this.Controls.Add(this.TTT_button_7);
+            this.Controls.Add(this.TTT_button_6);
+            this.Controls.Add(this.TTT_button_5);
+            this.Controls.Add(this.TTT_button_4);
+            this.Controls.Add(this.TTT_button_3);
+            this.Controls.Add(this.TTT_button_2);
+            this.Controls.Add(this.TTT_button_1);
+            this.Controls.Add(this.TTT_button_0);
             this.Controls.Add(this.textBox2);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.button1);
@@ -285,15 +285,15 @@
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.TextBox textBox2;
-        private System.Windows.Forms.Button button3;
-        private System.Windows.Forms.Button button4;
-        private System.Windows.Forms.Button button5;
-        private System.Windows.Forms.Button button6;
-        private System.Windows.Forms.Button button7;
-        private System.Windows.Forms.Button button8;
-        private System.Windows.Forms.Button button9;
-        private System.Windows.Forms.Button button10;
-        private System.Windows.Forms.Button button11;
+        private System.Windows.Forms.Button TTT_button_0;
+        private System.Windows.Forms.Button TTT_button_1;
+        private System.Windows.Forms.Button TTT_button_2;
+        private System.Windows.Forms.Button TTT_button_3;
+        private System.Windows.Forms.Button TTT_button_4;
+        private System.Windows.Forms.Button TTT_button_5;
+        private System.Windows.Forms.Button TTT_button_6;
+        private System.Windows.Forms.Button TTT_button_7;
+        private System.Windows.Forms.Button TTT_button_8;
     }
 }
 

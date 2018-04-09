@@ -26,7 +26,11 @@ namespace TTTClient
         byte[] bdata = new byte[1024];
         string myusername = "";
         private int size = 1024;
-
+        
+        string player_status = "Waiting";//Waiting is default
+        string player_game_status = "";//X or O will be assigned when game starts
+        string opponent = ""; //will be assigned when game starts
+       
         private void btnConnect_Click(object sender, EventArgs e)
         {
             //read-in username from user
@@ -150,6 +154,52 @@ namespace TTTClient
                 }
             }
            // Application.Exit();
+        }
+
+        private void button_handeling(Button caller) {
+            if (player_status == "Waiting") return; //return if player is not in game
+            string msg;
+            msg = myusername + ">" + "server" + ">move>" + opponent + ">" + player_game_status + ">";
+            byte[] bin_msg = Encoding.ASCII.GetBytes(msg);
+            _client.Send(bin_msg);
+
+                       
+        
+        }
+        private void TTT_button_0_Click(object sender, EventArgs e) {
+            button_handeling(TTT_button_0);
+        }
+
+        private void TTT_button_1_Click(object sender, EventArgs e) {
+            button_handeling(TTT_button_1);
+        }
+
+        private void TTT_button_2_Click(object sender, EventArgs e) {
+            button_handeling(TTT_button_2);
+        }
+
+        private void TTT_button_3_Click(object sender, EventArgs e) {
+            button_handeling(TTT_button_3);
+        }
+
+        private void TTT_button_4_Click(object sender, EventArgs e) {
+            button_handeling(TTT_button_4);
+        }
+
+        private void TTT_button_5_Click(object sender, EventArgs e) {
+            button_handeling(TTT_button_5);
+        }
+
+        private void TTT_button_6_Click(object sender, EventArgs e) {
+            button_handeling(TTT_button_6);
+        }
+
+        private void TTT_button_7_Click(object sender, EventArgs e) {
+            button_handeling(TTT_button_7);
+        }
+
+        private void TTT_button_8_Click(object sender, EventArgs e) {
+            button_handeling(TTT_button_8);
         }
 
 
