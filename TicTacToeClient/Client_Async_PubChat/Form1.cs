@@ -93,6 +93,39 @@ namespace TTTClient
                        this.lstUsers.Items.Add(u_list[i]);
                     }
                     break;
+                case "game_request":
+                   // textBox1.AppendText(msg_rec[0] + "> " + msg_rec[3] + "\r\n");
+
+                    DialogResult dialogResult = MessageBox.Show("Do you choose to accept a challenge from " + msg_rec[3] + "?", "Incoming Challenge!!!", MessageBoxButtons.YesNo);
+
+                    string msg = "";
+                    if(dialogResult == DialogResult.Yes){
+                        //send back confirmation.
+                        //change user status to playing
+                        //???
+                        //Profit
+                         msg = myusername + ">" + "server>" + "accept_game" + ">" + msg_rec[3] + ">";
+                    }
+                    else if (dialogResult == DialogResult.No){
+                        //send rejection
+                        //don't change user status
+                        //???
+                        //profit
+                         msg = myusername + ">" + "server>" + "reject_game" + ">" + msg_rec[3] + ">";
+                    }
+
+                    if (msg != "") {
+                        byte[] bin_msg = Encoding.ASCII.GetBytes(msg);
+                        _client.Send(bin_msg);
+                    }
+                    break;
+                case "game_rejection":
+                    DialogResult rejectionResult = MessageBox.Show(msg_rec[3] + " has chickened out. Oh well", "Denied", MessageBoxButtons.OK);
+                    //do I need to tell the window to close??
+                    break;
+                case "game_accept":
+                    DialogResult acceptResult = MessageBox.Show("Let the games begin", "Accepted", MessageBoxButtons.OK);
+                    break;
                 default:
                     break;
             }
@@ -156,6 +189,17 @@ namespace TTTClient
            // Application.Exit();
         }
 
+        private void button1_Click_1(object sender, EventArgs e) {
+            /***************************************************
+             * REQUEST TTT GAME WITH A USER SELECTED IN THE BOX
+             * 
+             *************************************************** */
+            if (myusername == "") return;
+            string msg = myusername + ">" + "server" + ">request_game>" + lstUsers.SelectedItem + ">";
+            byte[] bin_msg = Encoding.ASCII.GetBytes(msg);
+            _client.Send(bin_msg);
+        }
+
         private void button_handeling(Button caller) {
             if (player_status == "Waiting") return; //return if player is not in game
             string msg;
@@ -201,6 +245,8 @@ namespace TTTClient
         private void TTT_button_8_Click(object sender, EventArgs e) {
             button_handeling(TTT_button_8);
         }
+
+        
 
 
     }

@@ -23,7 +23,8 @@ namespace TTTServer
         private byte[] bindata = new byte[1024];
         private int size = 1024;
         private List<string> List_msgs = new List<string>();
-
+        private List<string> games = new List<string>(); //contains list of who is playing who in this format "username1#username2"
+        private List<string> users_in_game = new List<string>(); //contains list of what users are in a game, singular. Different from above
         public Form1()
         {
             InitializeComponent();
@@ -115,12 +116,12 @@ namespace TTTServer
                 case "login":
                     lstUsers.Items.Add(msg_fields[0]); //add login name in the source field
                     clientSockets.Last().name = msg_fields[0];
-
+                    
                     //send user_list to all clients
                     userlist_msg = get_User_lst();
                     for (int i = 0; i < clientSockets.Count; i++)
                     {
-                        Send2Client(clientSockets[i].msock, userlist_msg);
+                        send_to_client(clientSockets[i].msock, userlist_msg);
                     }
 
                     break;
@@ -140,7 +141,7 @@ namespace TTTServer
                     userlist_msg = get_User_lst();
                     for (int i = 0; i < clientSockets.Count; i++)
                     {
-                        Send2Client(clientSockets[i].msock, userlist_msg);
+                        send_to_client(clientSockets[i].msock, userlist_msg);
                     }
                     server.BeginAccept(new AsyncCallback(AcceptConn), server);
                     break;
@@ -157,6 +158,48 @@ namespace TTTServer
                         send_to_client(clientSockets[i].msock, receivedData);
                     }
 
+                    break;
+                    
+                case "move":
+                    //msg_fields[3] => opponent username
+                    //msg_fields[4] => player piece X or O
+                    break;
+                case "request_game":
+                      //msg_fields[3] => requested opponent
+                    if ((games.Contains(msg_fields[0] + "#" + msg_fields[3])) || games.Contains(msg_fields[3] + "#" + msg_fields[0])) { 
+                        //users are already 
+                    }
+                    if (users_in_game.Contains(msg_fields[3])) {
+                        //the requested opponent is in a game already
+
+                    }
+                    else {
+                       // users_in_game.Add(msg_fields[0]);
+                        //users_in_game.Add(msg_fields[3]);
+                        //games.Add(msg_fields[0] + "#" + msg_fields[3]);//there is now a game between these two users
+                        socketitem opp_name = clientSockets.FirstOrDefault(o => o.name == msg_fields[3]);
+                        string temp = "GAMEREQUEST" + ">" + "server" + ">game_request" + ">" + msg_fields[0] + ">";
+                        send_to_client(opp_name.msock, temp);
+
+
+                    }
+
+                    break;
+                case "accept_game":
+                    //msg_fields[3] => username of accepted game
+                    users_in_game.Add(msg_fields[0]);
+                    users_in_game.Add(msg_fields[3]);
+                    games.Add(msg_fields[0] + "#" + msg_fields[3]);
+                    socketitem opp = clientSockets.FirstOrDefault(o => o.name == msg_fields[3]);
+                    socketitem opp2 = clientSockets.FirstOrDefault(o => o.name == msg_fields[0]);
+                    //the previous two lines find the socketitems for the two users playing. 
+                    //Later, to get the socket for the two users in a game, follow these steps:
+                    //1. parse the list of users_in_game for the two users.
+                    //2. create socketitems based on the name field as shown above
+                    //3. send the updated game data to them
+                    //4. rinse & repeat
+                    break;
+                case "reject_game":
                     break;
 
             } //end of switch
@@ -193,6 +236,8 @@ namespace TTTServer
             sock.BeginSend(bins,0, bins.Length, SocketFlags.None, new AsyncCallback(SendData), sock);
 
             server.BeginAccept(new AsyncCallback(AcceptConn), null);
+
+            
         }
 
         private void SendData(IAsyncResult iar)
