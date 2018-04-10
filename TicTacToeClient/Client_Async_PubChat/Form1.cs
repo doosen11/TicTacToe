@@ -30,6 +30,9 @@ namespace TTTClient
         string player_status = "Waiting";//Waiting is default
         string player_game_status = "";//X or O will be assigned when game starts
         string opponent = ""; //will be assigned when game starts
+        bool turn = false; //true = X, false = O;
+        bool winner = false;
+        int count = 0;
        
         private void btnConnect_Click(object sender, EventArgs e)
         {
@@ -39,7 +42,7 @@ namespace TTTClient
                 myusername = Microsoft.VisualBasic.Interaction.InputBox("Enter Username:", "User Login", "");
                 Application.DoEvents();
             } while (myusername == "");
-            textBox2.Text = myusername;
+            userName.Text = myusername;
             Application.DoEvents();
 
             btnConnect.Enabled = false; //disable this button so that the user cannot press it again
@@ -210,44 +213,218 @@ namespace TTTClient
                        
         
         }
-        private void TTT_button_0_Click(object sender, EventArgs e) {
+
+        private void TTT_button_0_Click(object sender, EventArgs e)
+        {
             button_handeling(TTT_button_0);
+            if (turn)
+                TTT_button_0.Text = "X";
+            else
+                TTT_button_0.Text = "O";
+            disableButtons();
+            turn = !turn;
+            count++;
+
+            wincheck();
         }
 
-        private void TTT_button_1_Click(object sender, EventArgs e) {
+        private void TTT_button_1_Click(object sender, EventArgs e)
+        {
             button_handeling(TTT_button_1);
+            if (turn)
+                TTT_button_1.Text = "X";
+            else
+                TTT_button_1.Text = "O";
+            disableButtons();
+            turn = !turn;
+            count++;
+
+            wincheck();
         }
 
-        private void TTT_button_2_Click(object sender, EventArgs e) {
+        private void TTT_button_2_Click(object sender, EventArgs e)
+        {
             button_handeling(TTT_button_2);
+            if (turn)
+                TTT_button_2.Text = "X";
+            else
+                TTT_button_2.Text = "O";
+            disableButtons();
+            turn = !turn;
+            count++;
+
+            wincheck();
         }
 
-        private void TTT_button_3_Click(object sender, EventArgs e) {
+        private void TTT_button_3_Click(object sender, EventArgs e)
+        {
             button_handeling(TTT_button_3);
+            if (turn)
+                TTT_button_3.Text = "X";
+            else
+                TTT_button_3.Text = "O";
+            disableButtons();
+            turn = !turn;
+            count++;
+
+            wincheck();
         }
 
-        private void TTT_button_4_Click(object sender, EventArgs e) {
+        private void TTT_button_4_Click(object sender, EventArgs e)
+        {
             button_handeling(TTT_button_4);
+            if (turn)
+                TTT_button_4.Text = "X";
+            else
+                TTT_button_4.Text = "O";
+            disableButtons();
+            turn = !turn;
+            count++;
+
+            wincheck();
         }
 
-        private void TTT_button_5_Click(object sender, EventArgs e) {
+        private void TTT_button_5_Click(object sender, EventArgs e)
+        {
             button_handeling(TTT_button_5);
+            if (turn)
+                TTT_button_5.Text = "X";
+            else
+                TTT_button_5.Text = "O";
+            disableButtons();
+            turn = !turn;
+            count++;
+
+            wincheck();
         }
 
-        private void TTT_button_6_Click(object sender, EventArgs e) {
+        private void TTT_button_6_Click(object sender, EventArgs e)
+        {
             button_handeling(TTT_button_6);
+            if (turn)
+                TTT_button_6.Text = "X";
+            else
+                TTT_button_6.Text = "O";
+            disableButtons();
+            turn = !turn;
+            count++;
+
+            wincheck();
         }
 
-        private void TTT_button_7_Click(object sender, EventArgs e) {
+        private void TTT_button_7_Click(object sender, EventArgs e)
+        {
             button_handeling(TTT_button_7);
+            if (turn)
+                TTT_button_7.Text = "X";
+            else
+                TTT_button_7.Text = "O";
+            disableButtons();
+            turn = !turn;
+            count++;
+
+            wincheck();
         }
 
-        private void TTT_button_8_Click(object sender, EventArgs e) {
+        private void TTT_button_8_Click(object sender, EventArgs e)
+        {
             button_handeling(TTT_button_8);
+            if (turn)
+                TTT_button_8.Text = "X";
+            else
+                TTT_button_8.Text = "O";
+            disableButtons();
+            turn = !turn;
+            count++;
+
+            wincheck();
         }
 
-        
+        private void wincheck()
+        {
+            if ((TTT_button_0.Text == TTT_button_1.Text) && (TTT_button_1.Text == TTT_button_2.Text) && (TTT_button_0.Text != ""))
+                winner = true;
+            else if ((TTT_button_3.Text == TTT_button_4.Text) && (TTT_button_4.Text == TTT_button_5.Text) && (TTT_button_3.Text != ""))
+                winner = true;
+            else if ((TTT_button_6.Text == TTT_button_7.Text) && (TTT_button_7.Text == TTT_button_8.Text) && (TTT_button_6.Text != ""))
+                winner = true;
+            else if ((TTT_button_0.Text == TTT_button_3.Text) && (TTT_button_3.Text == TTT_button_6.Text) && (TTT_button_3.Text != ""))
+                winner = true;
+            else if ((TTT_button_1.Text == TTT_button_4.Text) && (TTT_button_4.Text == TTT_button_7.Text) && (TTT_button_4.Text != ""))
+                winner = true;
+            else if ((TTT_button_2.Text == TTT_button_5.Text) && (TTT_button_5.Text == TTT_button_8.Text) && (TTT_button_5.Text != ""))
+                winner = true;
+            else if ((TTT_button_0.Text == TTT_button_4.Text) && (TTT_button_4.Text == TTT_button_8.Text) && (TTT_button_4.Text != ""))
+                winner = true;
+            else if ((TTT_button_2.Text == TTT_button_4.Text) && (TTT_button_4.Text == TTT_button_6.Text) && (TTT_button_4.Text != ""))
+                winner = true;
 
+            if (winner)
+            {
+                String message = "";
+                if (turn)
+                {
+                    message = "O";
+                }
+                else
+                {
+                    message = "X";
+                }
 
+                MessageBox.Show(message + " Wins!", userName.Text);
+                disableButtons();
+                clearButtons();
+
+                winner = false;
+                count = 0;
+            }
+            if ((count == 9) && (winner == false))
+            {
+                MessageBox.Show("Draw!", userName.Text);
+                disableButtons();
+                clearButtons();
+
+                winner = false;
+                count = 0;
+            }
+
+        }
+        private void disableButtons()
+        {
+            TTT_button_0.Enabled = false;
+            TTT_button_1.Enabled = false;
+            TTT_button_2.Enabled = false;
+            TTT_button_3.Enabled = false;
+            TTT_button_4.Enabled = false;
+            TTT_button_5.Enabled = false;
+            TTT_button_6.Enabled = false;
+            TTT_button_7.Enabled = false;
+            TTT_button_8.Enabled = false;
+        }
+
+        private void enableButtons()
+        {
+            TTT_button_0.Enabled = true;
+            TTT_button_1.Enabled = true;
+            TTT_button_2.Enabled = true;
+            TTT_button_3.Enabled = true;
+            TTT_button_4.Enabled = true;
+            TTT_button_5.Enabled = true;
+            TTT_button_6.Enabled = true;
+            TTT_button_7.Enabled = true;
+            TTT_button_8.Enabled = true;
+        }
+        private void clearButtons()
+        {
+            TTT_button_0.Text = "";
+            TTT_button_1.Text = "";
+            TTT_button_2.Text = "";
+            TTT_button_3.Text = "";
+            TTT_button_4.Text = "";
+            TTT_button_5.Text = "";
+            TTT_button_6.Text = "";
+            TTT_button_7.Text = "";
+            TTT_button_8.Text = "";
+        }
     }
 }

@@ -39,7 +39,7 @@
             this.label1 = new System.Windows.Forms.Label();
             this.button1 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
-            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.userName = new System.Windows.Forms.TextBox();
             this.TTT_button_0 = new System.Windows.Forms.Button();
             this.TTT_button_1 = new System.Windows.Forms.Button();
             this.TTT_button_2 = new System.Windows.Forms.Button();
@@ -150,12 +150,12 @@
             this.button2.Text = "Exit Game";
             this.button2.UseVisualStyleBackColor = true;
             // 
-            // textBox2
+            // userName
             // 
-            this.textBox2.Location = new System.Drawing.Point(87, 12);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(100, 20);
-            this.textBox2.TabIndex = 21;
+            this.userName.Location = new System.Drawing.Point(87, 12);
+            this.userName.Name = "userName";
+            this.userName.Size = new System.Drawing.Size(100, 20);
+            this.userName.TabIndex = 21;
             // 
             // TTT_button_0
             // 
@@ -252,7 +252,7 @@
             this.Controls.Add(this.TTT_button_2);
             this.Controls.Add(this.TTT_button_1);
             this.Controls.Add(this.TTT_button_0);
-            this.Controls.Add(this.textBox2);
+            this.Controls.Add(this.userName);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.label1);
@@ -285,7 +285,7 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.TextBox userName;
         private System.Windows.Forms.Button TTT_button_0;
         private System.Windows.Forms.Button TTT_button_1;
         private System.Windows.Forms.Button TTT_button_2;
