@@ -162,7 +162,22 @@ namespace TTTServer
                     
                 case "move":
                     //msg_fields[3] => opponent username
-                    //msg_fields[4] => player piece X or O
+                    //msg_fields[4] => game turn count (parse to int)
+                    //msg_fields[5] => buttonname that was pressed
+                    string one = msg_fields[0];
+                    string two = msg_fields[3];
+                    if (games.Contains(one + "#" + two) || games.Contains(two + "#" + one)) { 
+                        //there exissts a game between user one and user two.
+                        int turn_number = int.Parse(msg_fields[4]);
+                        turn_number++;
+                        socketitem one_sock = clientSockets.FirstOrDefault(o => o.name == one);
+                        socketitem two_sock = clientSockets.FirstOrDefault(o => o.name == two);
+                        
+                        string hmmm = "MOVE" + ">" + "server" + ">turn_taken>" + turn_number.ToString() + ">" + msg_fields[5];
+                        send_to_client(one_sock.msock, hmmm);
+                        send_to_client(two_sock.msock, hmmm);
+
+                    }
                     break;
                 case "request_game":
                       //msg_fields[3] => requested opponent
@@ -198,11 +213,19 @@ namespace TTTServer
                     //2. create socketitems based on the name field as shown above
                     //3. send the updated game data to them
                     //4. rinse & repeat
+                    string message = "ACCEPTED" + ">" + "game_accept" + ">";
+                    send_to_client(opp.msock, message);
+                    send_to_client(opp2.msock, message);
                     break;
                 case "reject_game":
+                    socketitem a = clientSockets.FirstOrDefault(o => o.name == msg_fields[3]);
+                    socketitem b = clientSockets.FirstOrDefault(o => o.name == msg_fields[0]);
+                    string message2 = "DENIED" + ">" + "game_rejection" + ">";
+                    send_to_client(a.msock, message2);
+                    send_to_client(b.msock, message2);
                     break;
 
-            } //end of switch
+            } 
 
             if (client.Connected)
                 client.BeginReceive(bindata, 0, size, SocketFlags.None, new AsyncCallback(ReceiveData), client);

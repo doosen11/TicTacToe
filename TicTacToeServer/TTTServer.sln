@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2012
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Async_Server_pubchat", "Async_Server_pubchat\Async_Server_pubchat.csproj", "{1E6A7E90-A63D-4CBC-8D3B-D9391AF8F06B}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TTTServer", "Async_Server_pubchat\TTTServer.csproj", "{1E6A7E90-A63D-4CBC-8D3B-D9391AF8F06B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

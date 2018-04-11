@@ -1,0 +1,8 @@
+C:\Users\Dawson\Documents\GitHub\TicTacToe2\TicTacToeServer\Async_Server_pubchat\bin\Debug\Async_Server_pubchat.exe.config
+C:\Users\Dawson\Documents\GitHub\TicTacToe2\TicTacToeServer\Async_Server_pubchat\bin\Debug\Async_Server_pubchat.exe
+C:\Users\Dawson\Documents\GitHub\TicTacToe2\TicTacToeServer\Async_Server_pubchat\bin\Debug\Async_Server_pubchat.pdb
+C:\Users\Dawson\Documents\GitHub\TicTacToe2\TicTacToeServer\Async_Server_pubchat\obj\Debug\TTTServer.Form1.resources
+C:\Users\Dawson\Documents\GitHub\TicTacToe2\TicTacToeServer\Async_Server_pubchat\obj\Debug\TTTServer.Properties.Resources.resources
+C:\Users\Dawson\Documents\GitHub\TicTacToe2\TicTacToeServer\Async_Server_pubchat\obj\Debug\TTTServer.csproj.GenerateResource.Cache
+C:\Users\Dawson\Documents\GitHub\TicTacToe2\TicTacToeServer\Async_Server_pubchat\obj\Debug\Async_Server_pubchat.exe
+C:\Users\Dawson\Documents\GitHub\TicTacToe2\TicTacToeServer\Async_Server_pubchat\obj\Debug\Async_Server_pubchat.pdb
