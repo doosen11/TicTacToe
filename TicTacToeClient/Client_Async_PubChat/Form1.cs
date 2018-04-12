@@ -34,6 +34,7 @@ namespace TTTClient
         bool winner = false;
         int count = 0;
         int turn_count = 0;
+        int secret_piece_number = 0; //0 by default. The client who requested the game will always be O (0)for now. X = 1, O = 0. 
         private void btnConnect_Click(object sender, EventArgs e)
         {
             //read-in username from user
@@ -108,6 +109,7 @@ namespace TTTClient
                         //???
                         //Profit
                          msg = myusername + ">" + "server>" + "accept_game" + ">" + msg_rec[3] + ">";
+                         secret_piece_number = 1;//player is now X
                     }
                     else if (dialogResult == DialogResult.No){
                         //send rejection
@@ -128,6 +130,8 @@ namespace TTTClient
                     break;
                 case "game_accept":
                     DialogResult acceptResult = MessageBox.Show("Let the games begin", "Accepted", MessageBoxButtons.OK);
+                    player_status = "Playing";
+                    opponent = msg_rec[3];
                     break;
                 case "turn_taken":
                     turn_count = int.Parse(msg_rec[3]);
@@ -230,6 +234,7 @@ namespace TTTClient
              * 
              *************************************************** */
             if (myusername == "") return;
+            if (player_status == "Playing") return;//shouldn't ever happen if the button gets disabled properly
             string msg = myusername + ">" + "server" + ">request_game>" + lstUsers.SelectedItem + ">";
             byte[] bin_msg = Encoding.ASCII.GetBytes(msg);
             _client.Send(bin_msg);

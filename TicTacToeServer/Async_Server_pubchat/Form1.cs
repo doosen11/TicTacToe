@@ -25,6 +25,7 @@ namespace TTTServer
         private List<string> List_msgs = new List<string>();
         private List<string> games = new List<string>(); //contains list of who is playing who in this format "username1#username2"
         private List<string> users_in_game = new List<string>(); //contains list of what users are in a game, singular. Different from above
+
         public Form1()
         {
             InitializeComponent();
@@ -213,14 +214,18 @@ namespace TTTServer
                     //2. create socketitems based on the name field as shown above
                     //3. send the updated game data to them
                     //4. rinse & repeat
-                    string message = "ACCEPTED" + ">" + "game_accept" + ">";
+                    string message = "ACCEPTED" + ">" + "server" + ">" + "game_accept" + ">" + msg_fields[0] + ">";
+                   // lstUsers.Items.Remove(msg_fields[0] + "     " + "Waiting");
+                    //lstUsers.Items.Remove(msg_fields[3] + "     " + "Waiting");
+                    //lstUsers.Items.Add(msg_fields[0] + "     " + "Playing");
+                    //lstUsers.Items.Add(msg_fields[3] + "     " + "Playing");
                     send_to_client(opp.msock, message);
                     send_to_client(opp2.msock, message);
                     break;
                 case "reject_game":
                     socketitem a = clientSockets.FirstOrDefault(o => o.name == msg_fields[3]);
                     socketitem b = clientSockets.FirstOrDefault(o => o.name == msg_fields[0]);
-                    string message2 = "DENIED" + ">" + "game_rejection" + ">";
+                    string message2 = "DENIED" + ">" + "server" + ">" + "game_rejection" + ">";
                     send_to_client(a.msock, message2);
                     send_to_client(b.msock, message2);
                     break;
