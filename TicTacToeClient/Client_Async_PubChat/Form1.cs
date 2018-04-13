@@ -101,7 +101,7 @@ namespace TTTClient
                    // textBox1.AppendText(msg_rec[0] + "> " + msg_rec[3] + "\r\n");
 
                     DialogResult dialogResult = MessageBox.Show("Do you choose to accept a challenge from " + msg_rec[3] + "?", "Incoming Challenge!!!", MessageBoxButtons.YesNo);
-
+                    player_status = "Playing";
                     string msg = "";
                     if(dialogResult == DialogResult.Yes){
                         //send back confirmation.
@@ -116,6 +116,7 @@ namespace TTTClient
                         //don't change user status
                         //???
                         //profit
+                        player_status = "Waiting";
                          msg = myusername + ">" + "server>" + "reject_game" + ">" + msg_rec[3] + ">";
                     }
 
@@ -127,10 +128,11 @@ namespace TTTClient
                 case "game_rejection":
                     DialogResult rejectionResult = MessageBox.Show(msg_rec[3] + " has chickened out. Oh well", "Denied", MessageBoxButtons.OK);
                     //do I need to tell the window to close??
+                    player_status = "Waiting";
                     break;
                 case "game_accept":
                     DialogResult acceptResult = MessageBox.Show("Let the games begin", "Accepted", MessageBoxButtons.OK);
-                    player_status = "Playing";
+                    //player_status = "Playing";
                     opponent = msg_rec[3];
                     break;
                 case "turn_taken":
@@ -235,6 +237,7 @@ namespace TTTClient
              *************************************************** */
             if (myusername == "") return;
             if (player_status == "Playing") return;//shouldn't ever happen if the button gets disabled properly
+            string temp = lstUsers.SelectedItem.ToString().Substring(0, lstUsers.SelectedItem.ToString().Length - 13);
             string msg = myusername + ">" + "server" + ">request_game>" + lstUsers.SelectedItem + ">";
             byte[] bin_msg = Encoding.ASCII.GetBytes(msg);
             _client.Send(bin_msg);

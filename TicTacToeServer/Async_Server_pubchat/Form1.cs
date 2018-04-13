@@ -117,11 +117,11 @@ namespace TTTServer
                 case "login":
                     lstUsers.Items.Add(msg_fields[0]); //add login name in the source field
                     clientSockets.Last().name = msg_fields[0];
-                    
+                    clientSockets.Last().status = "Waiting";
                     //send user_list to all clients
                     userlist_msg = get_User_lst();
-                    for (int i = 0; i < clientSockets.Count; i++)
-                    {
+                    for (int i = 0; i < clientSockets.Count; i++){
+                        
                         send_to_client(clientSockets[i].msock, userlist_msg);
                     }
 
@@ -215,10 +215,8 @@ namespace TTTServer
                     //3. send the updated game data to them
                     //4. rinse & repeat
                     string message = "ACCEPTED" + ">" + "server" + ">" + "game_accept" + ">" + msg_fields[0] + ">";
-                   // lstUsers.Items.Remove(msg_fields[0] + "     " + "Waiting");
-                    //lstUsers.Items.Remove(msg_fields[3] + "     " + "Waiting");
-                    //lstUsers.Items.Add(msg_fields[0] + "     " + "Playing");
-                    //lstUsers.Items.Add(msg_fields[3] + "     " + "Playing");
+                    opp.status = "Playing";
+                    opp2.status = "Playing";
                     send_to_client(opp.msock, message);
                     send_to_client(opp2.msock, message);
                     break;
@@ -242,9 +240,10 @@ namespace TTTServer
             string user_list = "";
             if (this.lstUsers.Items.Count != 0)
             {
-                for (int i = 0; i < this.lstUsers.Items.Count; i++)
+                for (int i = 0; i < this.clientSockets.Count; i++)
                 {
-                    user_list += this.lstUsers.Items[i] + "/";
+                   // user_list += this.lstUsers.Items[i] + "/";
+                    user_list += this.clientSockets.ElementAt(i).name + "     " + this.clientSockets.ElementAt(i).status + '/'; ;
 
                 }
                 user_list = user_list.Substring(0, user_list.Length - 1);  //remove last "/"
@@ -280,6 +279,7 @@ namespace TTTServer
     {
         public Socket msock { get; set; }
         public string name { get; set; }
+        public string status { get; set; }
         public socketitem(Socket sock)
         {
             this.msock = sock;

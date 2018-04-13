@@ -6,3 +6,4 @@ C:\Users\Dawson\Documents\GitHub\TicTacToe2\TicTacToeServer\Async_Server_pubchat
 C:\Users\Dawson\Documents\GitHub\TicTacToe2\TicTacToeServer\Async_Server_pubchat\obj\Debug\TTTServer.csproj.GenerateResource.Cache
 C:\Users\Dawson\Documents\GitHub\TicTacToe2\TicTacToeServer\Async_Server_pubchat\obj\Debug\Async_Server_pubchat.exe
 C:\Users\Dawson\Documents\GitHub\TicTacToe2\TicTacToeServer\Async_Server_pubchat\obj\Debug\Async_Server_pubchat.pdb
+C:\Users\Dawson\Documents\GitHub\TicTacToe2\TicTacToeServer\Async_Server_pubchat\obj\Debug\TTTServer.csprojResolveAssemblyReference.cache
