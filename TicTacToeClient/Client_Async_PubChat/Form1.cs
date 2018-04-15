@@ -26,7 +26,8 @@ namespace TTTClient
         byte[] bdata = new byte[1024];
         string myusername = "";
         private int size = 1024;
-        
+
+        string ReqUser;
         string player_status = "Waiting";//Waiting is default
         string player_game_status = "";//X or O will be assigned when game starts
         string opponent = ""; //will be assigned when game starts
@@ -237,10 +238,10 @@ namespace TTTClient
              *************************************************** */
             if (myusername == "") return;
             if (player_status == "Playing") return;//shouldn't ever happen if the button gets disabled properly
-            string temp = Microsoft.VisualBasic.Interaction.InputBox("Enter Username: ", "User Login", ""); ;
+            ReqUser = Microsoft.VisualBasic.Interaction.InputBox("Enter Username: ", "User Login", ""); ;
             //string temp = lstUsers.SelectedItem.ToString().Substring(0, lstUsers.SelectedItem.ToString().Length - 13);
             
-            string msg = myusername + ">" + "server" + ">request_game>" + temp + ">";
+            string msg = myusername + ">" + "server" + ">request_game>" + ReqUser + ">";
             byte[] bin_msg = Encoding.ASCII.GetBytes(msg);
             _client.Send(bin_msg);
         }
@@ -471,6 +472,14 @@ namespace TTTClient
             TTT_button_6.Text = "";
             TTT_button_7.Text = "";
             TTT_button_8.Text = "";
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            
+            string msg = myusername + ">" + "server" + ">end_game>" + ReqUser + ">";
+            byte[] bin_msg = Encoding.ASCII.GetBytes(msg);
+            _client.Send(bin_msg);
         }
     }
 }

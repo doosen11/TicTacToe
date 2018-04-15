@@ -227,6 +227,13 @@ namespace TTTServer
                     send_to_client(a.msock, message2);
                     send_to_client(b.msock, message2);
                     break;
+                case "end_game":
+                    socketitem c = clientSockets.FirstOrDefault(o => o.name == msg_fields[3]);
+                    socketitem d = clientSockets.FirstOrDefault(o => o.name == msg_fields[0]);
+                    users_in_game.Remove(msg_fields[0]);
+                    users_in_game.Remove(msg_fields[3]);
+                    games.Remove(msg_fields[0] + "#" + msg_fields[3]);
+                    break;
 
             } 
 
