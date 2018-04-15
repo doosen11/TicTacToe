@@ -7,3 +7,12 @@ C:\Users\Dawson\Documents\GitHub\TicTacToe2\TicTacToeServer\Async_Server_pubchat
 C:\Users\Dawson\Documents\GitHub\TicTacToe2\TicTacToeServer\Async_Server_pubchat\obj\Debug\Async_Server_pubchat.exe
 C:\Users\Dawson\Documents\GitHub\TicTacToe2\TicTacToeServer\Async_Server_pubchat\obj\Debug\Async_Server_pubchat.pdb
 C:\Users\Dawson\Documents\GitHub\TicTacToe2\TicTacToeServer\Async_Server_pubchat\obj\Debug\TTTServer.csprojResolveAssemblyReference.cache
+G:\Windows Redirect\Documents\GitHub\TicTacToe\TicTacToeServer\Async_Server_pubchat\bin\Debug\Async_Server_pubchat.exe.config
+G:\Windows Redirect\Documents\GitHub\TicTacToe\TicTacToeServer\Async_Server_pubchat\obj\Debug\Async_Server_pubchat.exe
+G:\Windows Redirect\Documents\GitHub\TicTacToe\TicTacToeServer\Async_Server_pubchat\obj\Debug\Async_Server_pubchat.pdb
+G:\Windows Redirect\Documents\GitHub\TicTacToe\TicTacToeServer\Async_Server_pubchat\bin\Debug\Async_Server_pubchat.exe
+G:\Windows Redirect\Documents\GitHub\TicTacToe\TicTacToeServer\Async_Server_pubchat\bin\Debug\Async_Server_pubchat.pdb
+G:\Windows Redirect\Documents\GitHub\TicTacToe\TicTacToeServer\Async_Server_pubchat\obj\Debug\TTTServer.csprojResolveAssemblyReference.cache
+G:\Windows Redirect\Documents\GitHub\TicTacToe\TicTacToeServer\Async_Server_pubchat\obj\Debug\TTTServer.Form1.resources
+G:\Windows Redirect\Documents\GitHub\TicTacToe\TicTacToeServer\Async_Server_pubchat\obj\Debug\TTTServer.Properties.Resources.resources
+G:\Windows Redirect\Documents\GitHub\TicTacToe\TicTacToeServer\Async_Server_pubchat\obj\Debug\TTTServer.csproj.GenerateResource.Cache

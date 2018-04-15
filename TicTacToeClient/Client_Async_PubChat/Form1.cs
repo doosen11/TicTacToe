@@ -237,8 +237,10 @@ namespace TTTClient
              *************************************************** */
             if (myusername == "") return;
             if (player_status == "Playing") return;//shouldn't ever happen if the button gets disabled properly
-            string temp = lstUsers.SelectedItem.ToString().Substring(0, lstUsers.SelectedItem.ToString().Length - 13);
-            string msg = myusername + ">" + "server" + ">request_game>" + lstUsers.SelectedItem + ">";
+            string temp = Microsoft.VisualBasic.Interaction.InputBox("Enter Username: ", "User Login", ""); ;
+            //string temp = lstUsers.SelectedItem.ToString().Substring(0, lstUsers.SelectedItem.ToString().Length - 13);
+            
+            string msg = myusername + ">" + "server" + ">request_game>" + temp + ">";
             byte[] bin_msg = Encoding.ASCII.GetBytes(msg);
             _client.Send(bin_msg);
         }
