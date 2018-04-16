@@ -35,7 +35,9 @@ namespace TTTClient
         bool winner = false;
         int count = 0;
         int turn_count = 0;
-        int secret_piece_number = 0; //0 by default. The client who requested the game will always be O (0)for now. X = 1, O = 0. 
+        int secret_piece_number = 0; //0 by default. The client who requested the game will always be O (0)for now. X = 1, O = 0.
+        int wincount = 0;
+        int drawcount = 0;
         private void btnConnect_Click(object sender, EventArgs e)
         {
             //read-in username from user
@@ -264,126 +266,54 @@ namespace TTTClient
         private void TTT_button_0_Click(object sender, EventArgs e)
         {
             button_handeling(TTT_button_0);
-            //if (turn)
-            //    TTT_button_0.Text = "X";
-            //else
-            //    TTT_button_0.Text = "O";
-            //disableButtons();
-            //turn = !turn;
-            //count++;
-
             wincheck();
         }
 
         private void TTT_button_1_Click(object sender, EventArgs e)
         {
             button_handeling(TTT_button_1);
-            //if (turn)
-            //    TTT_button_1.Text = "X";
-            //else
-            //    TTT_button_1.Text = "O";
-            //disableButtons();
-            //turn = !turn;
-            //count++;
-
             wincheck();
         }
 
         private void TTT_button_2_Click(object sender, EventArgs e)
         {
             button_handeling(TTT_button_2);
-            //if (turn)
-            //    TTT_button_2.Text = "X";
-            //else
-            //    TTT_button_2.Text = "O";
-            //disableButtons();
-            //turn = !turn;
-            //count++;
-
             wincheck();
         }
 
         private void TTT_button_3_Click(object sender, EventArgs e)
         {
             button_handeling(TTT_button_3);
-            //if (turn)
-            //    TTT_button_3.Text = "X";
-            //else
-            //    TTT_button_3.Text = "O";
-            //disableButtons();
-            //turn = !turn;
-            //count++;
-
             wincheck();
         }
 
         private void TTT_button_4_Click(object sender, EventArgs e)
         {
             button_handeling(TTT_button_4);
-            //if (turn)
-            //    TTT_button_4.Text = "X";
-            //else
-            //    TTT_button_4.Text = "O";
-            //disableButtons();
-            //turn = !turn;
-            //count++;
-
             wincheck();
         }
 
         private void TTT_button_5_Click(object sender, EventArgs e)
         {
             button_handeling(TTT_button_5);
-            //if (turn)
-            //    TTT_button_5.Text = "X";
-            //else
-            //    TTT_button_5.Text = "O";
-            //disableButtons();
-            //turn = !turn;
-            //count++;
-
             wincheck();
         }
 
         private void TTT_button_6_Click(object sender, EventArgs e)
         {
             button_handeling(TTT_button_6);
-            //if (turn)
-            //    TTT_button_6.Text = "X";
-            //else
-            //    TTT_button_6.Text = "O";
-            //disableButtons();
-            //turn = !turn;
-            //count++;
-
             wincheck();
         }
 
         private void TTT_button_7_Click(object sender, EventArgs e)
         {
             button_handeling(TTT_button_7);
-            //if (turn)
-            //    TTT_button_7.Text = "X";
-            //else
-            //    TTT_button_7.Text = "O";
-            //disableButtons();
-            //turn = !turn;
-            //count++;
-
             wincheck();
         }
 
         private void TTT_button_8_Click(object sender, EventArgs e)
         {
             button_handeling(TTT_button_8);
-            //if (turn)
-            //    TTT_button_8.Text = "X";
-            //else
-            //    TTT_button_8.Text = "O";
-            //disableButtons();
-            //turn = !turn;
-            //count++;
-
             wincheck();
         }
 
@@ -421,7 +351,7 @@ namespace TTTClient
                 MessageBox.Show(message + " Wins!", userName.Text);
                 disableButtons();
                 clearButtons();
-
+                wincount++;
                 winner = false;
                 count = 0;
             }
@@ -430,7 +360,7 @@ namespace TTTClient
                 MessageBox.Show("Draw!", userName.Text);
                 disableButtons();
                 clearButtons();
-
+                drawcount++;
                 winner = false;
                 count = 0;
             }
