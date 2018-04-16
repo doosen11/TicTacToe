@@ -20,6 +20,7 @@ namespace TTTClient
         {
             InitializeComponent();
             CheckForIllegalCrossThreadCalls = false;
+            disableButtons();
         }
 
         Socket _client;
@@ -113,6 +114,8 @@ namespace TTTClient
                         //Profit
                         player_status = "Playing";
                          msg = myusername + ">" + "server>" + "accept_game" + ">" + msg_rec[3] + ">";
+                         enableButtons();
+                        
                          secret_piece_number = 1;//player is now X
                     }
                     else if (dialogResult == DialogResult.No){
@@ -132,12 +135,15 @@ namespace TTTClient
                 case "game_rejection":
                     DialogResult rejectionResult = MessageBox.Show(msg_rec[3] + " has chickened out. Oh well", "Denied", MessageBoxButtons.OK);
                     //do I need to tell the window to close??
-                    player_status = "Waiting";
+                   // player_status = "Waiting";
                     break;
                 case "game_accept":
                     DialogResult acceptResult = MessageBox.Show("Let the games begin", "Accepted", MessageBoxButtons.OK);
                     //player_status = "Playing";
-                    opponent = msg_rec[3];
+                    //opponent = msg_rec[3];
+                    if (myusername == msg_rec[3]) opponent = msg_rec[4];
+                    else opponent = msg_rec[3];
+                    enableButtons();
 
                     break;
                 case "turn_taken":
@@ -184,12 +190,12 @@ namespace TTTClient
         {
             if (txtSend.Text == "")
             {
-                MessageBox.Show("I can't send nothing...", "User Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("I can't send nothing...", "PEBCAK", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
             if (btnConnect.Enabled == true)
             {
-                MessageBox.Show("Dude. Login First...", "User Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Dude. Login First...", "PEBCAK", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
@@ -241,17 +247,17 @@ namespace TTTClient
              * 
              *************************************************** */
             if (myusername == "") return;
-            if (player_status == "Playing") return;//shouldn't ever happen if the button gets disabled properly
+           // if (player_status == "Playing") return;//shouldn't ever happen if the button gets disabled properly
             ReqUser = Microsoft.VisualBasic.Interaction.InputBox("Enter Username: ", "User Login", ""); ;
             //string temp = lstUsers.SelectedItem.ToString().Substring(0, lstUsers.SelectedItem.ToString().Length - 13);
-            
+      //      player_status = "Playing";
             string msg = myusername + ">" + "server" + ">request_game>" + ReqUser + ">";
             byte[] bin_msg = Encoding.ASCII.GetBytes(msg);
             _client.Send(bin_msg);
         }
 
         private void button_handeling(Button caller) {
-            if (player_status == "Waiting") return; //return if player is not in game
+            //if (player_status == "Waiting") return; //return if player is not in game
             string msg;
             msg = myusername + ">" + "server" + ">move>" + opponent + ">" + turn_count.ToString() + ">" + caller.Name + ">";
             byte[] bin_msg = Encoding.ASCII.GetBytes(msg);

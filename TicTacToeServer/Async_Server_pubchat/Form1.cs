@@ -167,7 +167,8 @@ namespace TTTServer
                     //msg_fields[5] => buttonname that was pressed
                     string one = msg_fields[0];
                     string two = msg_fields[3];
-                    if (games.Contains(one + "#" + two) || games.Contains(two + "#" + one)) { 
+                    if (games.Contains(one + "#" + two) || games.Contains(two + "#" + one)) {
+                        Console.Write("HELLO. IS IT YOU?");
                         //there exissts a game between user one and user two.
                         int turn_number = int.Parse(msg_fields[4]);
                         turn_number++;
@@ -214,7 +215,7 @@ namespace TTTServer
                     //2. create socketitems based on the name field as shown above
                     //3. send the updated game data to them
                     //4. rinse & repeat
-                    string message = "ACCEPTED" + ">" + "server" + ">" + "game_accept" + ">" + msg_fields[0] + ">";
+                    string message = "ACCEPTED" + ">" + "server" + ">" + "game_accept" + ">" + msg_fields[0] + ">" + msg_fields[3];
                     clientSockets.Remove(opp);
                     clientSockets.Remove(opp2);
                     opp.status = "Playing";
