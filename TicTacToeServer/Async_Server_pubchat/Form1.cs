@@ -215,10 +215,19 @@ namespace TTTServer
                     //3. send the updated game data to them
                     //4. rinse & repeat
                     string message = "ACCEPTED" + ">" + "server" + ">" + "game_accept" + ">" + msg_fields[0] + ">";
+                    clientSockets.Remove(opp);
+                    clientSockets.Remove(opp2);
                     opp.status = "Playing";
                     opp2.status = "Playing";
+                    clientSockets.Add(opp);
+                    clientSockets.Add(opp2);
                     send_to_client(opp.msock, message);
                     send_to_client(opp2.msock, message);
+                    userlist_msg = get_User_lst();
+                   // byte[] msg4 = Encoding.ASCII.GetBytes(userlist_msg);
+                    for (int i = 0; i < clientSockets.Count; i++) {
+                        send_to_client(clientSockets[i].msock, userlist_msg);
+                    }
                     break;
                 case "reject_game":
                     socketitem a = clientSockets.FirstOrDefault(o => o.name == msg_fields[3]);

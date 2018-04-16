@@ -111,6 +111,7 @@ namespace TTTClient
                         //change user status to playing
                         //???
                         //Profit
+                        player_status = "Playing";
                          msg = myusername + ">" + "server>" + "accept_game" + ">" + msg_rec[3] + ">";
                          secret_piece_number = 1;//player is now X
                     }
@@ -137,6 +138,7 @@ namespace TTTClient
                     DialogResult acceptResult = MessageBox.Show("Let the games begin", "Accepted", MessageBoxButtons.OK);
                     //player_status = "Playing";
                     opponent = msg_rec[3];
+
                     break;
                 case "turn_taken":
                     turn_count = int.Parse(msg_rec[3]);
