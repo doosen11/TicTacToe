@@ -49,6 +49,7 @@
             this.TTT_button_6 = new System.Windows.Forms.Button();
             this.TTT_button_7 = new System.Windows.Forms.Button();
             this.TTT_button_8 = new System.Windows.Forms.Button();
+            this.textcount = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // textBox1
@@ -239,11 +240,19 @@
             this.TTT_button_8.UseVisualStyleBackColor = true;
             this.TTT_button_8.Click += new System.EventHandler(this.TTT_button_8_Click);
             // 
+            // textcount
+            // 
+            this.textcount.Location = new System.Drawing.Point(358, 403);
+            this.textcount.Name = "textcount";
+            this.textcount.Size = new System.Drawing.Size(100, 20);
+            this.textcount.TabIndex = 31;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(898, 543);
+            this.Controls.Add(this.textcount);
             this.Controls.Add(this.TTT_button_8);
             this.Controls.Add(this.TTT_button_7);
             this.Controls.Add(this.TTT_button_6);
@@ -296,6 +305,7 @@
         private System.Windows.Forms.Button TTT_button_6;
         private System.Windows.Forms.Button TTT_button_7;
         private System.Windows.Forms.Button TTT_button_8;
+        private System.Windows.Forms.TextBox textcount;
     }
 }
 

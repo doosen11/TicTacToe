@@ -275,6 +275,7 @@ namespace TTTClient
         {
             button_handeling(TTT_button_0);
             wincheck();
+            count++;
             //disableButtons();
         }
 
@@ -282,6 +283,7 @@ namespace TTTClient
         {
             button_handeling(TTT_button_1);
             wincheck();
+            count++;
             //disableButtons();
         }
 
@@ -289,6 +291,7 @@ namespace TTTClient
         {
             button_handeling(TTT_button_2);
             wincheck();
+            count++;
             //disableButtons();
         }
 
@@ -296,6 +299,7 @@ namespace TTTClient
         {
             button_handeling(TTT_button_3);
             wincheck();
+            count++;
             //disableButtons();
         }
 
@@ -303,6 +307,7 @@ namespace TTTClient
         {
             button_handeling(TTT_button_4);
             wincheck();
+            count++;
             //disableButtons();
         }
 
@@ -310,6 +315,7 @@ namespace TTTClient
         {
             button_handeling(TTT_button_5);
             wincheck();
+            count++;
             //disableButtons();
         }
 
@@ -317,6 +323,7 @@ namespace TTTClient
         {
             button_handeling(TTT_button_6);
             wincheck();
+            count++;
             //disableButtons();
         }
 
@@ -324,6 +331,7 @@ namespace TTTClient
         {
             button_handeling(TTT_button_7);
             wincheck();
+            count++;
             //disableButtons();
         }
 
@@ -331,6 +339,7 @@ namespace TTTClient
         {
             button_handeling(TTT_button_8);
             wincheck();
+            count++;
             //disableButtons();
         }
 
@@ -352,7 +361,11 @@ namespace TTTClient
                 winner = true;
             else if ((TTT_button_0.Text == TTT_button_3.Text) && (TTT_button_3.Text == TTT_button_6.Text) && (TTT_button_0.Text != ""))
                 winner = true;
-            else return;
+            else
+            {
+                //count++;
+                return;
+            }
 
             if (winner)
             {
