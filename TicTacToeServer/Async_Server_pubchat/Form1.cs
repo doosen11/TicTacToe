@@ -167,7 +167,8 @@ namespace TTTServer
                     //msg_fields[5] => buttonname that was pressed
                     string one = msg_fields[0];
                     string two = msg_fields[3];
-                    if (games.Contains(one + "#" + two) || games.Contains(two + "#" + one)) { 
+                    if (games.Contains(one + "#" + two) || games.Contains(two + "#" + one)) {
+                        Console.Write("HELLO. IS IT YOU?");
                         //there exissts a game between user one and user two.
                         int turn_number = int.Parse(msg_fields[4]);
                         turn_number++;
@@ -181,24 +182,33 @@ namespace TTTServer
                     }
                     break;
                 case "request_game":
-                      //msg_fields[3] => requested opponent
-                    if ((games.Contains(msg_fields[0] + "#" + msg_fields[3])) || games.Contains(msg_fields[3] + "#" + msg_fields[0])) { 
-                        //users are already 
-                    }
-                    if (users_in_game.Contains(msg_fields[3])) {
-                        //the requested opponent is in a game already
+                        //msg_fields[3] => requested opponent
+                        if ((games.Contains(msg_fields[0] + "#" + msg_fields[3])) || games.Contains(msg_fields[3] + "#" + msg_fields[0]))
+                        {
+                            //users are already 
+                        }
+                        if (users_in_game.Contains(msg_fields[3]))
+                        {
+                            //the requested opponent is in a game already
 
-                    }
-                    else {
-                       // users_in_game.Add(msg_fields[0]);
-                        //users_in_game.Add(msg_fields[3]);
-                        //games.Add(msg_fields[0] + "#" + msg_fields[3]);//there is now a game between these two users
-                        socketitem opp_name = clientSockets.FirstOrDefault(o => o.name == msg_fields[3]);
-                        string temp = "GAMEREQUEST" + ">" + "server" + ">game_request" + ">" + msg_fields[0] + ">";
-                        send_to_client(opp_name.msock, temp);
-
-
-                    }
+                        }
+                        else
+                        {
+                            // users_in_game.Add(msg_fields[0]);
+                            //users_in_game.Add(msg_fields[3]);
+                            //games.Add(msg_fields[0] + "#" + msg_fields[3]);//there is now a game between these two users
+                            socketitem opp_name = clientSockets.FirstOrDefault(o => o.name == msg_fields[3]);
+                            string temp = "GAMEREQUEST" + ">" + "server" + ">game_request" + ">" + msg_fields[0] + ">";
+                            try
+                            {
+                            send_to_client(opp_name.msock, temp);
+                            }
+                            catch (NullReferenceException ex)
+                            {
+                                 MessageBox.Show(ex.Message.ToString());
+                                 //Application.Exit();
+                            }
+                        }
 
                     break;
                 case "accept_game":
@@ -214,11 +224,20 @@ namespace TTTServer
                     //2. create socketitems based on the name field as shown above
                     //3. send the updated game data to them
                     //4. rinse & repeat
-                    string message = "ACCEPTED" + ">" + "server" + ">" + "game_accept" + ">" + msg_fields[0] + ">";
+                    string message = "ACCEPTED" + ">" + "server" + ">" + "game_accept" + ">" + msg_fields[0] + ">" + msg_fields[3];
+                    clientSockets.Remove(opp);
+                    clientSockets.Remove(opp2);
                     opp.status = "Playing";
                     opp2.status = "Playing";
+                    clientSockets.Add(opp);
+                    clientSockets.Add(opp2);
                     send_to_client(opp.msock, message);
                     send_to_client(opp2.msock, message);
+                    userlist_msg = get_User_lst();
+                   // byte[] msg4 = Encoding.ASCII.GetBytes(userlist_msg);
+                    for (int i = 0; i < clientSockets.Count; i++) {
+                        send_to_client(clientSockets[i].msock, userlist_msg);
+                    }
                     break;
                 case "reject_game":
                     socketitem a = clientSockets.FirstOrDefault(o => o.name == msg_fields[3]);
@@ -233,6 +252,20 @@ namespace TTTServer
                     users_in_game.Remove(msg_fields[0]);
                     users_in_game.Remove(msg_fields[3]);
                     games.Remove(msg_fields[0] + "#" + msg_fields[3]);
+                    games.Remove(msg_fields[3] + "#" + msg_fields[0]);
+                    if (c != null && d != null) {
+                        clientSockets.Remove(c);
+                        clientSockets.Remove(d);
+                        c.status = "Waiting";
+                        d.status = "Waiting";
+                        clientSockets.Add(c);
+                        clientSockets.Add(d);
+                    }
+                    userlist_msg = get_User_lst();
+                   // byte[] msg4 = Encoding.ASCII.GetBytes(userlist_msg);
+                    for (int i = 0; i < clientSockets.Count; i++) {
+                        send_to_client(clientSockets[i].msock, userlist_msg);
+                    }
                     break;
 
             } 
@@ -278,6 +311,20 @@ namespace TTTServer
         {
             Socket soc = (Socket)iar.AsyncState;
             soc.EndSend(iar);
+        }
+
+        private void Form1_FormClosing(object sender, FormClosingEventArgs e) {
+            if (server != null) {
+                string msg = "SHUTDOWN>" + "server>" + "shutdown>";
+                byte[] bin_msg = Encoding.ASCII.GetBytes(msg);
+                for (int i = 0; i < clientSockets.Count; i++) {
+                    socketitem t = clientSockets.ElementAt(i);
+                    send_to_client(t.msock, msg);
+                    
+                }
+                server.Shutdown(SocketShutdown.Both);
+                server.Close();
+            }
         }
 
     }

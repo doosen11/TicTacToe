@@ -20,6 +20,7 @@ namespace TTTClient
         {
             InitializeComponent();
             CheckForIllegalCrossThreadCalls = false;
+            disableButtons();
         }
 
         Socket _client;
@@ -35,11 +36,12 @@ namespace TTTClient
         bool winner = false;
         int count = 0;
         int turn_count = 0;
-        int secret_piece_number = 0; //0 by default. The client who requested the game will always be O (0)for now. X = 1, O = 0.
+        bool secret_piece_number = false; //0 by default. The client who requested the game will always be O (0)for now. X = 1, O = 0.
         int wincount = 0;
         int drawcount = 0;
         private void btnConnect_Click(object sender, EventArgs e)
         {
+            txtServerIP.Enabled = false;
             //read-in username from user
             do
             {
@@ -57,13 +59,6 @@ namespace TTTClient
             try
             {
                 _client.Connect(ipep);
-            }
-            catch (SocketException ex)
-            {
-                MessageBox.Show(ex.Message.ToString());
-                Application.Exit();
-            }
-
             //first action after connectin is sending a user name
             string msg = myusername + ">" + "server" + ">login>";
             byte[] bin_msg = Encoding.ASCII.GetBytes(msg);
@@ -72,6 +67,12 @@ namespace TTTClient
             Thread.Sleep(100);
 
             _client.BeginReceive(bdata, 0, size, SocketFlags.None, new AsyncCallback(ReceiveData), _client);
+            }
+            catch (SocketException ex)
+            {
+                MessageBox.Show(ex.Message.ToString());
+                Application.Exit();
+            }
         }
 
 
@@ -80,101 +81,125 @@ namespace TTTClient
             Socket remote = (Socket)iar.AsyncState;
             if (remote.Connected == false)
                 Environment.Exit(0);
-
-            int recv = remote.EndReceive(iar);
+            int recv;
+            try {
+                recv = remote.EndReceive(iar);
+            }
+            catch (SocketException ex) {
+                _client.Shutdown(SocketShutdown.Both);
+                DialogResult shutdown = MessageBox.Show("The server has unexpectadly closed. Please reconnect later.", "Unexpexted Shutdown", MessageBoxButtons.OK);
+                _client.Close();
+                Application.Exit();
+                
+                recv = 0;
+            }
             string stringData = Encoding.ASCII.GetString(bdata, 0, recv);
             // analyze the string received from server
             string[] msg_rec = stringData.Split('>');
 
-            switch (msg_rec[2])
-            {
-                case "msg":
-                    textBox1.AppendText(msg_rec[0] + "> " + msg_rec[3] + "\r\n");
-                    break;
-                case "user_list":
-                    
-                    string[] u_list = msg_rec[3].Split('/');
-                    this.lstUsers.Items.Clear();
-                    for (int i = 0; i < u_list.Length; i++)
-                    {
-                       this.lstUsers.Items.Add(u_list[i]);
-                    }
-                    break;
-                case "game_request":
-                   // textBox1.AppendText(msg_rec[0] + "> " + msg_rec[3] + "\r\n");
+            try {
+                switch (msg_rec[2]) {
+                    case "msg":
+                        textBox1.AppendText(msg_rec[0] + "> " + msg_rec[3] + "\r\n");
+                        break;
+                    case "user_list":
 
-                    DialogResult dialogResult = MessageBox.Show("Do you choose to accept a challenge from " + msg_rec[3] + "?", "Incoming Challenge!!!", MessageBoxButtons.YesNo);
-                    player_status = "Playing";
-                    string msg = "";
-                    if(dialogResult == DialogResult.Yes){
-                        //send back confirmation.
-                        //change user status to playing
-                        //???
-                        //Profit
-                         msg = myusername + ">" + "server>" + "accept_game" + ">" + msg_rec[3] + ">";
-                         secret_piece_number = 1;//player is now X
-                    }
-                    else if (dialogResult == DialogResult.No){
-                        //send rejection
-                        //don't change user status
-                        //???
-                        //profit
-                        player_status = "Waiting";
-                         msg = myusername + ">" + "server>" + "reject_game" + ">" + msg_rec[3] + ">";
-                    }
+                        string[] u_list = msg_rec[3].Split('/');
+                        this.lstUsers.Items.Clear();
+                        for (int i = 0; i < u_list.Length; i++) {
+                            this.lstUsers.Items.Add(u_list[i]);
+                        }
+                        break;
+                    case "game_request":
+                        // textBox1.AppendText(msg_rec[0] + "> " + msg_rec[3] + "\r\n");
 
-                    if (msg != "") {
-                        byte[] bin_msg = Encoding.ASCII.GetBytes(msg);
-                        _client.Send(bin_msg);
-                    }
-                    break;
-                case "game_rejection":
-                    DialogResult rejectionResult = MessageBox.Show(msg_rec[3] + " has chickened out. Oh well", "Denied", MessageBoxButtons.OK);
-                    //do I need to tell the window to close??
-                    player_status = "Waiting";
-                    break;
-                case "game_accept":
-                    DialogResult acceptResult = MessageBox.Show("Let the games begin", "Accepted", MessageBoxButtons.OK);
-                    //player_status = "Playing";
-                    opponent = msg_rec[3];
-                    break;
-                case "turn_taken":
-                    turn_count = int.Parse(msg_rec[3]);
-                    switch (msg_rec[4]) { 
-                        case "TTT_button_0":
-                            update_button_text(TTT_button_0);
-                            break;
-                        case "TTT_button_1":
-                            update_button_text(TTT_button_1);
-                            break;
-                        case "TTT_button_2":
-                            update_button_text(TTT_button_2);
-                            break;
-                        case "TTT_button_3":
-                            update_button_text(TTT_button_3);
-                            break;
-                        case "TTT_button_4":
-                            update_button_text(TTT_button_4);
-                            break;
-                        case "TTT_button_5":
-                            update_button_text(TTT_button_5);
-                            break;
-                        case "TTT_button_6":
-                            update_button_text(TTT_button_6);
-                            break;
-                        case "TTT_button_7":
-                            update_button_text(TTT_button_7);
-                            break;
-                        case "TTT_button_8":
-                            update_button_text(TTT_button_8);
-                            break;
-                    }
-                    
-                    break;
-                default:
-                    break;
+                        DialogResult dialogResult = MessageBox.Show("Do you choose to accept a challenge from " + msg_rec[3] + "?", "Incoming Challenge!!!", MessageBoxButtons.YesNo);
+                        player_status = "Playing";
+                        string msg = "";
+                        if (dialogResult == DialogResult.Yes) {
+                            //send back confirmation.
+                            //change user status to playing
+                            //???
+                            //Profit
+                            player_status = "Playing";
+                            msg = myusername + ">" + "server>" + "accept_game" + ">" + msg_rec[3] + ">";
+                            enableButtons();
+
+                            secret_piece_number = true;//player is now X
+                        }
+                        else if (dialogResult == DialogResult.No) {
+                            //send rejection
+                            //don't change user status
+                            //???
+                            //profit
+                            player_status = "Waiting";
+                            msg = myusername + ">" + "server>" + "reject_game" + ">" + msg_rec[3] + ">";
+                        }
+
+                        if (msg != "") {
+                            byte[] bin_msg = Encoding.ASCII.GetBytes(msg);
+                            _client.Send(bin_msg);
+                        }
+                        break;
+                    case "game_rejection":
+                        DialogResult rejectionResult = MessageBox.Show(msg_rec[3] + " has chickened out. Oh well", "Denied", MessageBoxButtons.OK);
+                        //do I need to tell the window to close??
+                        // player_status = "Waiting";
+                        break;
+                    case "game_accept":
+                        DialogResult acceptResult = MessageBox.Show("Let the games begin", "Accepted", MessageBoxButtons.OK);
+                        //player_status = "Playing";
+                        //opponent = msg_rec[3];
+                        if (myusername == msg_rec[3]) opponent = msg_rec[4];
+                        else opponent = msg_rec[3];
+                        allenableButtons();
+
+                        break;
+                    case "turn_taken":
+                        turn_count = int.Parse(msg_rec[3]);
+                        switch (msg_rec[4]) {
+                            case "TTT_button_0":
+                                update_button_text(TTT_button_0);
+                                break;
+                            case "TTT_button_1":
+                                update_button_text(TTT_button_1);
+                                break;
+                            case "TTT_button_2":
+                                update_button_text(TTT_button_2);
+                                break;
+                            case "TTT_button_3":
+                                update_button_text(TTT_button_3);
+                                break;
+                            case "TTT_button_4":
+                                update_button_text(TTT_button_4);
+                                break;
+                            case "TTT_button_5":
+                                update_button_text(TTT_button_5);
+                                break;
+                            case "TTT_button_6":
+                                update_button_text(TTT_button_6);
+                                break;
+                            case "TTT_button_7":
+                                update_button_text(TTT_button_7);
+                                break;
+                            case "TTT_button_8":
+                                update_button_text(TTT_button_8);
+                                break;
+                        }
+
+                        break;
+                    case "shutdown":
+                        _client.Shutdown(SocketShutdown.Both);
+                        DialogResult shutdown = MessageBox.Show("The server has unexpectadly closed. Please reconnect later.", "Unexpexted Shutdown", MessageBoxButtons.OK);
+                        break;
+                    default:
+                        break;
+                }
             }
-
+            catch(IndexOutOfRangeException i){
+               // _client.Close();
+                Application.Exit();
+            }
             _client.BeginReceive(bdata, 0, size, SocketFlags.None, new AsyncCallback(ReceiveData), _client);
         }
 
@@ -182,12 +207,12 @@ namespace TTTClient
         {
             if (txtSend.Text == "")
             {
-                MessageBox.Show("I can't send nothing...", "User Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("I can't send nothing...", "PEBCAK", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
             if (btnConnect.Enabled == true)
             {
-                MessageBox.Show("Dude. Login First...", "User Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Dude. Login First...", "PEBCAK", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
@@ -238,18 +263,19 @@ namespace TTTClient
              * REQUEST TTT GAME WITH A USER SELECTED IN THE BOX
              * 
              *************************************************** */
+            allenableButtons();
             if (myusername == "") return;
-            if (player_status == "Playing") return;//shouldn't ever happen if the button gets disabled properly
+            // if (player_status == "Playing") return;//shouldn't ever happen if the button gets disabled properly
             ReqUser = Microsoft.VisualBasic.Interaction.InputBox("Enter Username: ", "User Login", ""); ;
             //string temp = lstUsers.SelectedItem.ToString().Substring(0, lstUsers.SelectedItem.ToString().Length - 13);
-            
+            //player_status = "Playing";
             string msg = myusername + ">" + "server" + ">request_game>" + ReqUser + ">";
             byte[] bin_msg = Encoding.ASCII.GetBytes(msg);
             _client.Send(bin_msg);
         }
 
         private void button_handeling(Button caller) {
-            if (player_status == "Waiting") return; //return if player is not in game
+            //if (player_status == "Waiting") return; //return if player is not in game
             string msg;
             msg = myusername + ">" + "server" + ">move>" + opponent + ">" + turn_count.ToString() + ">" + caller.Name + ">";
             byte[] bin_msg = Encoding.ASCII.GetBytes(msg);
@@ -267,54 +293,81 @@ namespace TTTClient
         {
             button_handeling(TTT_button_0);
             wincheck();
+            count++;
+            disableButtons();
+            enableButtons();
         }
 
         private void TTT_button_1_Click(object sender, EventArgs e)
         {
             button_handeling(TTT_button_1);
             wincheck();
+            count++;
+            disableButtons();
+            enableButtons();
         }
 
         private void TTT_button_2_Click(object sender, EventArgs e)
         {
             button_handeling(TTT_button_2);
             wincheck();
+            count++;
+            disableButtons();
+            enableButtons();
         }
 
         private void TTT_button_3_Click(object sender, EventArgs e)
         {
             button_handeling(TTT_button_3);
             wincheck();
+            count++;
+            disableButtons();
+            enableButtons();
         }
 
         private void TTT_button_4_Click(object sender, EventArgs e)
         {
             button_handeling(TTT_button_4);
             wincheck();
+            count++;
+            disableButtons();
+            enableButtons();
         }
 
         private void TTT_button_5_Click(object sender, EventArgs e)
         {
             button_handeling(TTT_button_5);
             wincheck();
+            count++;
+            disableButtons();
+            enableButtons();
         }
 
         private void TTT_button_6_Click(object sender, EventArgs e)
         {
             button_handeling(TTT_button_6);
             wincheck();
+            count++;
+            disableButtons();
+            enableButtons();
         }
 
         private void TTT_button_7_Click(object sender, EventArgs e)
         {
             button_handeling(TTT_button_7);
             wincheck();
+            count++;
+            disableButtons();
+            enableButtons();
         }
 
         private void TTT_button_8_Click(object sender, EventArgs e)
         {
             button_handeling(TTT_button_8);
             wincheck();
+            count++;
+            disableButtons();
+            enableButtons();
         }
 
         private void wincheck()
@@ -325,21 +378,26 @@ namespace TTTClient
                 winner = true;
             else if ((TTT_button_6.Text == TTT_button_7.Text) && (TTT_button_7.Text == TTT_button_8.Text) && (TTT_button_6.Text != ""))
                 winner = true;
-            else if ((TTT_button_0.Text == TTT_button_3.Text) && (TTT_button_3.Text == TTT_button_6.Text) && (TTT_button_3.Text != ""))
+            else if ((TTT_button_0.Text == TTT_button_4.Text) && (TTT_button_4.Text == TTT_button_8.Text) && (TTT_button_0.Text != ""))
                 winner = true;
-            else if ((TTT_button_1.Text == TTT_button_4.Text) && (TTT_button_4.Text == TTT_button_7.Text) && (TTT_button_4.Text != ""))
+            else if ((TTT_button_2.Text == TTT_button_4.Text) && (TTT_button_4.Text == TTT_button_6.Text) && (TTT_button_2.Text != ""))
                 winner = true;
             else if ((TTT_button_2.Text == TTT_button_5.Text) && (TTT_button_5.Text == TTT_button_8.Text) && (TTT_button_5.Text != ""))
                 winner = true;
-            else if ((TTT_button_0.Text == TTT_button_4.Text) && (TTT_button_4.Text == TTT_button_8.Text) && (TTT_button_4.Text != ""))
+            else if ((TTT_button_1.Text == TTT_button_4.Text) && (TTT_button_4.Text == TTT_button_7.Text) && (TTT_button_1.Text != ""))
                 winner = true;
-            else if ((TTT_button_2.Text == TTT_button_4.Text) && (TTT_button_4.Text == TTT_button_6.Text) && (TTT_button_4.Text != ""))
+            else if ((TTT_button_0.Text == TTT_button_3.Text) && (TTT_button_3.Text == TTT_button_6.Text) && (TTT_button_0.Text != ""))
                 winner = true;
+            else
+            {
+                //count++;
+                return;
+            }
 
             if (winner)
             {
                 String message = "";
-                if (turn)
+                if (secret_piece_number)
                 {
                     message = "O";
                 }
@@ -381,6 +439,50 @@ namespace TTTClient
 
         private void enableButtons()
         {
+            if (TTT_button_0.Text == "")
+            {
+                TTT_button_0.Enabled = true;
+            }
+            if (TTT_button_1.Text == "")
+            {
+                TTT_button_1.Enabled = true;
+            }
+            if (TTT_button_2.Text == "")
+            {
+                TTT_button_2.Enabled = true;
+            }
+            if (TTT_button_3.Text == "")
+            {
+                TTT_button_3.Enabled = true;
+            }
+            if (TTT_button_4.Text == "")
+            {
+                TTT_button_4.Enabled = true;
+            }
+            if (TTT_button_5.Text == "")
+            {
+                TTT_button_5.Enabled = true;
+            }
+            if (TTT_button_6.Text == "")
+            {
+                TTT_button_6.Enabled = true;
+            }
+            if (TTT_button_7.Text == "")
+            {
+                TTT_button_7.Enabled = true;
+            }
+            if (TTT_button_8.Text == "")
+            {
+                TTT_button_8.Enabled = true;
+            }
+
+            else
+            {
+                wincheck();
+            }
+        }
+        private void allenableButtons()
+        {
             TTT_button_0.Enabled = true;
             TTT_button_1.Enabled = true;
             TTT_button_2.Enabled = true;
@@ -407,9 +509,17 @@ namespace TTTClient
         private void button2_Click(object sender, EventArgs e)
         {
             
-            string msg = myusername + ">" + "server" + ">end_game>" + ReqUser + ">";
+            string msg = myusername + ">" + "server" + ">end_game>" + opponent + ">";
             byte[] bin_msg = Encoding.ASCII.GetBytes(msg);
-            _client.Send(bin_msg);
+            try
+            {
+                _client.Send(bin_msg);
+            }
+            catch (NullReferenceException ex)
+            {
+                MessageBox.Show(ex.Message.ToString());
+                //Application.Exit();
+            }
         }
     }
 }
