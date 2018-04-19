@@ -252,6 +252,20 @@ namespace TTTServer
                     users_in_game.Remove(msg_fields[0]);
                     users_in_game.Remove(msg_fields[3]);
                     games.Remove(msg_fields[0] + "#" + msg_fields[3]);
+                    games.Remove(msg_fields[3] + "#" + msg_fields[0]);
+                    if (c != null && d != null) {
+                        clientSockets.Remove(c);
+                        clientSockets.Remove(d);
+                        c.status = "Waiting";
+                        d.status = "Waiting";
+                        clientSockets.Add(c);
+                        clientSockets.Add(d);
+                    }
+                    userlist_msg = get_User_lst();
+                   // byte[] msg4 = Encoding.ASCII.GetBytes(userlist_msg);
+                    for (int i = 0; i < clientSockets.Count; i++) {
+                        send_to_client(clientSockets[i].msock, userlist_msg);
+                    }
                     break;
 
             } 
