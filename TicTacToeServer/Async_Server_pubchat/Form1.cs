@@ -313,6 +313,20 @@ namespace TTTServer
             soc.EndSend(iar);
         }
 
+        private void Form1_FormClosing(object sender, FormClosingEventArgs e) {
+            if (server != null) {
+                string msg = "SHUTDOWN>" + "server>" + "shutdown>";
+                byte[] bin_msg = Encoding.ASCII.GetBytes(msg);
+                for (int i = 0; i < clientSockets.Count; i++) {
+                    socketitem t = clientSockets.ElementAt(i);
+                    send_to_client(t.msock, msg);
+                    
+                }
+                server.Shutdown(SocketShutdown.Both);
+                server.Close();
+            }
+        }
+
     }
 
     public class socketitem

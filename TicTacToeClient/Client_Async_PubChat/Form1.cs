@@ -81,107 +81,125 @@ namespace TTTClient
             Socket remote = (Socket)iar.AsyncState;
             if (remote.Connected == false)
                 Environment.Exit(0);
-            int recv = remote.EndReceive(iar);
+            int recv;
+            try {
+                recv = remote.EndReceive(iar);
+            }
+            catch (SocketException ex) {
+                _client.Shutdown(SocketShutdown.Both);
+                DialogResult shutdown = MessageBox.Show("The server has unexpectadly closed. Please reconnect later.", "Unexpexted Shutdown", MessageBoxButtons.OK);
+                _client.Close();
+                Application.Exit();
+                
+                recv = 0;
+            }
             string stringData = Encoding.ASCII.GetString(bdata, 0, recv);
             // analyze the string received from server
             string[] msg_rec = stringData.Split('>');
 
-            switch (msg_rec[2])
-            {
-                case "msg":
-                    textBox1.AppendText(msg_rec[0] + "> " + msg_rec[3] + "\r\n");
-                    break;
-                case "user_list":
-                    
-                    string[] u_list = msg_rec[3].Split('/');
-                    this.lstUsers.Items.Clear();
-                    for (int i = 0; i < u_list.Length; i++)
-                    {
-                       this.lstUsers.Items.Add(u_list[i]);
-                    }
-                    break;
-                case "game_request":
-                   // textBox1.AppendText(msg_rec[0] + "> " + msg_rec[3] + "\r\n");
+            try {
+                switch (msg_rec[2]) {
+                    case "msg":
+                        textBox1.AppendText(msg_rec[0] + "> " + msg_rec[3] + "\r\n");
+                        break;
+                    case "user_list":
 
-                    DialogResult dialogResult = MessageBox.Show("Do you choose to accept a challenge from " + msg_rec[3] + "?", "Incoming Challenge!!!", MessageBoxButtons.YesNo);
-                    player_status = "Playing";
-                    string msg = "";
-                    if(dialogResult == DialogResult.Yes){
-                        //send back confirmation.
-                        //change user status to playing
-                        //???
-                        //Profit
+                        string[] u_list = msg_rec[3].Split('/');
+                        this.lstUsers.Items.Clear();
+                        for (int i = 0; i < u_list.Length; i++) {
+                            this.lstUsers.Items.Add(u_list[i]);
+                        }
+                        break;
+                    case "game_request":
+                        // textBox1.AppendText(msg_rec[0] + "> " + msg_rec[3] + "\r\n");
+
+                        DialogResult dialogResult = MessageBox.Show("Do you choose to accept a challenge from " + msg_rec[3] + "?", "Incoming Challenge!!!", MessageBoxButtons.YesNo);
                         player_status = "Playing";
-                         msg = myusername + ">" + "server>" + "accept_game" + ">" + msg_rec[3] + ">";
-                         enableButtons();
-                        
-                         secret_piece_number = true;//player is now X
-                    }
-                    else if (dialogResult == DialogResult.No){
-                        //send rejection
-                        //don't change user status
-                        //???
-                        //profit
-                        player_status = "Waiting";
-                         msg = myusername + ">" + "server>" + "reject_game" + ">" + msg_rec[3] + ">";
-                    }
+                        string msg = "";
+                        if (dialogResult == DialogResult.Yes) {
+                            //send back confirmation.
+                            //change user status to playing
+                            //???
+                            //Profit
+                            player_status = "Playing";
+                            msg = myusername + ">" + "server>" + "accept_game" + ">" + msg_rec[3] + ">";
+                            enableButtons();
 
-                    if (msg != "") {
-                        byte[] bin_msg = Encoding.ASCII.GetBytes(msg);
-                        _client.Send(bin_msg);
-                    }
-                    break;
-                case "game_rejection":
-                    DialogResult rejectionResult = MessageBox.Show(msg_rec[3] + " has chickened out. Oh well", "Denied", MessageBoxButtons.OK);
-                    //do I need to tell the window to close??
-                   // player_status = "Waiting";
-                    break;
-                case "game_accept":
-                    DialogResult acceptResult = MessageBox.Show("Let the games begin", "Accepted", MessageBoxButtons.OK);
-                    //player_status = "Playing";
-                    //opponent = msg_rec[3];
-                    if (myusername == msg_rec[3]) opponent = msg_rec[4];
-                    else opponent = msg_rec[3];
-                    allenableButtons();
+                            secret_piece_number = true;//player is now X
+                        }
+                        else if (dialogResult == DialogResult.No) {
+                            //send rejection
+                            //don't change user status
+                            //???
+                            //profit
+                            player_status = "Waiting";
+                            msg = myusername + ">" + "server>" + "reject_game" + ">" + msg_rec[3] + ">";
+                        }
 
-                    break;
-                case "turn_taken":
-                    turn_count = int.Parse(msg_rec[3]);
-                    switch (msg_rec[4]) { 
-                        case "TTT_button_0":
-                            update_button_text(TTT_button_0);
-                            break;
-                        case "TTT_button_1":
-                            update_button_text(TTT_button_1);
-                            break;
-                        case "TTT_button_2":
-                            update_button_text(TTT_button_2);
-                            break;
-                        case "TTT_button_3":
-                            update_button_text(TTT_button_3);
-                            break;
-                        case "TTT_button_4":
-                            update_button_text(TTT_button_4);
-                            break;
-                        case "TTT_button_5":
-                            update_button_text(TTT_button_5);
-                            break;
-                        case "TTT_button_6":
-                            update_button_text(TTT_button_6);
-                            break;
-                        case "TTT_button_7":
-                            update_button_text(TTT_button_7);
-                            break;
-                        case "TTT_button_8":
-                            update_button_text(TTT_button_8);
-                            break;
-                    }
-                    
-                    break;
-                default:
-                    break;
+                        if (msg != "") {
+                            byte[] bin_msg = Encoding.ASCII.GetBytes(msg);
+                            _client.Send(bin_msg);
+                        }
+                        break;
+                    case "game_rejection":
+                        DialogResult rejectionResult = MessageBox.Show(msg_rec[3] + " has chickened out. Oh well", "Denied", MessageBoxButtons.OK);
+                        //do I need to tell the window to close??
+                        // player_status = "Waiting";
+                        break;
+                    case "game_accept":
+                        DialogResult acceptResult = MessageBox.Show("Let the games begin", "Accepted", MessageBoxButtons.OK);
+                        //player_status = "Playing";
+                        //opponent = msg_rec[3];
+                        if (myusername == msg_rec[3]) opponent = msg_rec[4];
+                        else opponent = msg_rec[3];
+                        allenableButtons();
+
+                        break;
+                    case "turn_taken":
+                        turn_count = int.Parse(msg_rec[3]);
+                        switch (msg_rec[4]) {
+                            case "TTT_button_0":
+                                update_button_text(TTT_button_0);
+                                break;
+                            case "TTT_button_1":
+                                update_button_text(TTT_button_1);
+                                break;
+                            case "TTT_button_2":
+                                update_button_text(TTT_button_2);
+                                break;
+                            case "TTT_button_3":
+                                update_button_text(TTT_button_3);
+                                break;
+                            case "TTT_button_4":
+                                update_button_text(TTT_button_4);
+                                break;
+                            case "TTT_button_5":
+                                update_button_text(TTT_button_5);
+                                break;
+                            case "TTT_button_6":
+                                update_button_text(TTT_button_6);
+                                break;
+                            case "TTT_button_7":
+                                update_button_text(TTT_button_7);
+                                break;
+                            case "TTT_button_8":
+                                update_button_text(TTT_button_8);
+                                break;
+                        }
+
+                        break;
+                    case "shutdown":
+                        _client.Shutdown(SocketShutdown.Both);
+                        DialogResult shutdown = MessageBox.Show("The server has unexpectadly closed. Please reconnect later.", "Unexpexted Shutdown", MessageBoxButtons.OK);
+                        break;
+                    default:
+                        break;
+                }
             }
-
+            catch(IndexOutOfRangeException i){
+               // _client.Close();
+                Application.Exit();
+            }
             _client.BeginReceive(bdata, 0, size, SocketFlags.None, new AsyncCallback(ReceiveData), _client);
         }
 
