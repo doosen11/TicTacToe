@@ -50,6 +50,7 @@ namespace TTTClient
         int drawcount = 0;
         private void btnConnect_Click(object sender, EventArgs e)
         {
+            txtServerIP.Enabled = false;
             //read-in username from user
             do
             {
@@ -509,7 +510,15 @@ namespace TTTClient
             
             string msg = myusername + ">" + "server" + ">end_game>" + ReqUser + ">";
             byte[] bin_msg = Encoding.ASCII.GetBytes(msg);
-            _client.Send(bin_msg);
+            try
+            {
+                _client.Send(bin_msg);
+            }
+            catch (NullReferenceException ex)
+            {
+                MessageBox.Show(ex.Message.ToString());
+                //Application.Exit();
+            }
         }
     }
 }
