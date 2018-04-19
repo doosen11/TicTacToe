@@ -34,15 +34,6 @@ namespace TTTClient
         string opponent = ""; //will be assigned when game starts
         bool turn = false; //true = X, false = O;
         bool winner = false;
-        bool b0 = false;
-        bool b1 = false;
-        bool b2 = false;
-        bool b3 = false;
-        bool b4 = false;
-        bool b5 = false;
-        bool b6 = false;
-        bool b7 = false;
-        bool b8 = false;
         int count = 0;
         int turn_count = 0;
         bool secret_piece_number = false; //0 by default. The client who requested the game will always be O (0)for now. X = 1, O = 0.
@@ -151,7 +142,7 @@ namespace TTTClient
                     //opponent = msg_rec[3];
                     if (myusername == msg_rec[3]) opponent = msg_rec[4];
                     else opponent = msg_rec[3];
-                    enableButtons();
+                    allenableButtons();
 
                     break;
                 case "turn_taken":
@@ -254,11 +245,12 @@ namespace TTTClient
              * REQUEST TTT GAME WITH A USER SELECTED IN THE BOX
              * 
              *************************************************** */
+            allenableButtons();
             if (myusername == "") return;
-           // if (player_status == "Playing") return;//shouldn't ever happen if the button gets disabled properly
+            // if (player_status == "Playing") return;//shouldn't ever happen if the button gets disabled properly
             ReqUser = Microsoft.VisualBasic.Interaction.InputBox("Enter Username: ", "User Login", ""); ;
             //string temp = lstUsers.SelectedItem.ToString().Substring(0, lstUsers.SelectedItem.ToString().Length - 13);
-      //      player_status = "Playing";
+            //player_status = "Playing";
             string msg = myusername + ">" + "server" + ">request_game>" + ReqUser + ">";
             byte[] bin_msg = Encoding.ASCII.GetBytes(msg);
             _client.Send(bin_msg);
@@ -283,7 +275,6 @@ namespace TTTClient
         {
             button_handeling(TTT_button_0);
             wincheck();
-            b0 = true;
             count++;
             disableButtons();
             enableButtons();
@@ -293,7 +284,6 @@ namespace TTTClient
         {
             button_handeling(TTT_button_1);
             wincheck();
-            b1 = true;
             count++;
             disableButtons();
             enableButtons();
@@ -303,7 +293,6 @@ namespace TTTClient
         {
             button_handeling(TTT_button_2);
             wincheck();
-            b2 = true;
             count++;
             disableButtons();
             enableButtons();
@@ -313,7 +302,6 @@ namespace TTTClient
         {
             button_handeling(TTT_button_3);
             wincheck();
-            b3 = true;
             count++;
             disableButtons();
             enableButtons();
@@ -323,7 +311,6 @@ namespace TTTClient
         {
             button_handeling(TTT_button_4);
             wincheck();
-            b4 = true;
             count++;
             disableButtons();
             enableButtons();
@@ -333,7 +320,6 @@ namespace TTTClient
         {
             button_handeling(TTT_button_5);
             wincheck();
-            b5 = true;
             count++;
             disableButtons();
             enableButtons();
@@ -343,7 +329,6 @@ namespace TTTClient
         {
             button_handeling(TTT_button_6);
             wincheck();
-            b6 = true;
             count++;
             disableButtons();
             enableButtons();
@@ -353,7 +338,6 @@ namespace TTTClient
         {
             button_handeling(TTT_button_7);
             wincheck();
-            b7 = true;
             count++;
             disableButtons();
             enableButtons();
@@ -363,7 +347,6 @@ namespace TTTClient
         {
             button_handeling(TTT_button_8);
             wincheck();
-            b8 = true;
             count++;
             disableButtons();
             enableButtons();
@@ -438,41 +421,41 @@ namespace TTTClient
 
         private void enableButtons()
         {
-            if (b0 == false)
+            if (TTT_button_0.Text == "")
             {
                 TTT_button_0.Enabled = true;
             }
-            if (b1 == false)
+            if (TTT_button_1.Text == "")
             {
                 TTT_button_1.Enabled = true;
             }
-            if (b2 == false)
+            if (TTT_button_2.Text == "")
             {
                 TTT_button_2.Enabled = true;
             }
-            if (b3 == false)
+            if (TTT_button_3.Text == "")
             {
                 TTT_button_3.Enabled = true;
             }
-            if (b4 == false)
+            if (TTT_button_4.Text == "")
             {
                 TTT_button_4.Enabled = true;
             }
-            if (b5 == false)
+            if (TTT_button_5.Text == "")
             {
                 TTT_button_5.Enabled = true;
             }
-            if (b6 == false)
+            if (TTT_button_6.Text == "")
             {
                 TTT_button_6.Enabled = true;
             }
-            if (b7 == false)
+            if (TTT_button_7.Text == "")
             {
-            TTT_button_7.Enabled = true;
+                TTT_button_7.Enabled = true;
             }
-            if (b8 == false)
+            if (TTT_button_8.Text == "")
             {
-            TTT_button_8.Enabled = true;
+                TTT_button_8.Enabled = true;
             }
 
             else
