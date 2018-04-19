@@ -24,3 +24,6 @@ C:\Users\Dawson\Documents\GitHub\TicTacToe2\TicTacToeClient\Client_Async_PubChat
 C:\Users\Dawson\Documents\GitHub\TicTacToe2\TicTacToeClient\Client_Async_PubChat\obj\Debug\TTTClient.csproj.GenerateResource.Cache
 C:\Users\Dawson\Documents\GitHub\TicTacToe2\TicTacToeClient\Client_Async_PubChat\obj\Debug\TTTClient.exe
 C:\Users\Dawson\Documents\GitHub\TicTacToe2\TicTacToeClient\Client_Async_PubChat\obj\Debug\TTTClient.pdb
+G:\Windows Redirect\Documents\GitHub\TicTacToe\TicTacToeClient\Client_Async_PubChat\bin\Debug\TTTClient.exe.config
+G:\Windows Redirect\Documents\GitHub\TicTacToe\TicTacToeClient\Client_Async_PubChat\obj\Debug\TTTClient.exe
+G:\Windows Redirect\Documents\GitHub\TicTacToe\TicTacToeClient\Client_Async_PubChat\obj\Debug\TTTClient.pdb
