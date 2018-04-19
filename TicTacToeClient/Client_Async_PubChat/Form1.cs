@@ -509,7 +509,7 @@ namespace TTTClient
         private void button2_Click(object sender, EventArgs e)
         {
             
-            string msg = myusername + ">" + "server" + ">end_game>" + ReqUser + ">";
+            string msg = myusername + ">" + "server" + ">end_game>" + opponent + ">";
             byte[] bin_msg = Encoding.ASCII.GetBytes(msg);
             try
             {
