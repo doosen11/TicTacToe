@@ -71,7 +71,9 @@ namespace TTTClient
             catch (SocketException ex)
             {
                 MessageBox.Show(ex.Message.ToString());
-                Application.Exit();
+                btnConnect.Enabled = true;
+                txtServerIP.Enabled = true;
+
             }
         }
 
