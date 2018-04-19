@@ -182,24 +182,33 @@ namespace TTTServer
                     }
                     break;
                 case "request_game":
-                      //msg_fields[3] => requested opponent
-                    if ((games.Contains(msg_fields[0] + "#" + msg_fields[3])) || games.Contains(msg_fields[3] + "#" + msg_fields[0])) { 
-                        //users are already 
-                    }
-                    if (users_in_game.Contains(msg_fields[3])) {
-                        //the requested opponent is in a game already
+                        //msg_fields[3] => requested opponent
+                        if ((games.Contains(msg_fields[0] + "#" + msg_fields[3])) || games.Contains(msg_fields[3] + "#" + msg_fields[0]))
+                        {
+                            //users are already 
+                        }
+                        if (users_in_game.Contains(msg_fields[3]))
+                        {
+                            //the requested opponent is in a game already
 
-                    }
-                    else {
-                       // users_in_game.Add(msg_fields[0]);
-                        //users_in_game.Add(msg_fields[3]);
-                        //games.Add(msg_fields[0] + "#" + msg_fields[3]);//there is now a game between these two users
-                        socketitem opp_name = clientSockets.FirstOrDefault(o => o.name == msg_fields[3]);
-                        string temp = "GAMEREQUEST" + ">" + "server" + ">game_request" + ">" + msg_fields[0] + ">";
-                        send_to_client(opp_name.msock, temp);
-
-
-                    }
+                        }
+                        else
+                        {
+                            // users_in_game.Add(msg_fields[0]);
+                            //users_in_game.Add(msg_fields[3]);
+                            //games.Add(msg_fields[0] + "#" + msg_fields[3]);//there is now a game between these two users
+                            socketitem opp_name = clientSockets.FirstOrDefault(o => o.name == msg_fields[3]);
+                            string temp = "GAMEREQUEST" + ">" + "server" + ">game_request" + ">" + msg_fields[0] + ">";
+                            try
+                            {
+                            send_to_client(opp_name.msock, temp);
+                            }
+                            catch (NullReferenceException ex)
+                            {
+                                 MessageBox.Show(ex.Message.ToString());
+                                 //Application.Exit();
+                            }
+                        }
 
                     break;
                 case "accept_game":

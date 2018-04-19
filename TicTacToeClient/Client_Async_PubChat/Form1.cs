@@ -34,6 +34,15 @@ namespace TTTClient
         string opponent = ""; //will be assigned when game starts
         bool turn = false; //true = X, false = O;
         bool winner = false;
+        bool b0 = false;
+        bool b1 = false;
+        bool b2 = false;
+        bool b3 = false;
+        bool b4 = false;
+        bool b5 = false;
+        bool b6 = false;
+        bool b7 = false;
+        bool b8 = false;
         int count = 0;
         int turn_count = 0;
         bool secret_piece_number = false; //0 by default. The client who requested the game will always be O (0)for now. X = 1, O = 0.
@@ -58,13 +67,6 @@ namespace TTTClient
             try
             {
                 _client.Connect(ipep);
-            }
-            catch (SocketException ex)
-            {
-                MessageBox.Show(ex.Message.ToString());
-                Application.Exit();
-            }
-
             //first action after connectin is sending a user name
             string msg = myusername + ">" + "server" + ">login>";
             byte[] bin_msg = Encoding.ASCII.GetBytes(msg);
@@ -73,6 +75,12 @@ namespace TTTClient
             Thread.Sleep(100);
 
             _client.BeginReceive(bdata, 0, size, SocketFlags.None, new AsyncCallback(ReceiveData), _client);
+            }
+            catch (SocketException ex)
+            {
+                MessageBox.Show(ex.Message.ToString());
+                Application.Exit();
+            }
         }
 
 
@@ -81,7 +89,6 @@ namespace TTTClient
             Socket remote = (Socket)iar.AsyncState;
             if (remote.Connected == false)
                 Environment.Exit(0);
-
             int recv = remote.EndReceive(iar);
             string stringData = Encoding.ASCII.GetString(bdata, 0, recv);
             // analyze the string received from server
@@ -275,72 +282,90 @@ namespace TTTClient
         {
             button_handeling(TTT_button_0);
             wincheck();
+            b0 = true;
             count++;
-            //disableButtons();
+            disableButtons();
+            enableButtons();
         }
 
         private void TTT_button_1_Click(object sender, EventArgs e)
         {
             button_handeling(TTT_button_1);
             wincheck();
+            b1 = true;
             count++;
-            //disableButtons();
+            disableButtons();
+            enableButtons();
         }
 
         private void TTT_button_2_Click(object sender, EventArgs e)
         {
             button_handeling(TTT_button_2);
             wincheck();
+            b2 = true;
             count++;
-            //disableButtons();
+            disableButtons();
+            enableButtons();
         }
 
         private void TTT_button_3_Click(object sender, EventArgs e)
         {
             button_handeling(TTT_button_3);
             wincheck();
+            b3 = true;
             count++;
-            //disableButtons();
+            disableButtons();
+            enableButtons();
         }
 
         private void TTT_button_4_Click(object sender, EventArgs e)
         {
             button_handeling(TTT_button_4);
             wincheck();
+            b4 = true;
             count++;
-            //disableButtons();
+            disableButtons();
+            enableButtons();
         }
 
         private void TTT_button_5_Click(object sender, EventArgs e)
         {
             button_handeling(TTT_button_5);
             wincheck();
+            b5 = true;
             count++;
-            //disableButtons();
+            disableButtons();
+            enableButtons();
         }
 
         private void TTT_button_6_Click(object sender, EventArgs e)
         {
             button_handeling(TTT_button_6);
             wincheck();
+            b6 = true;
             count++;
-            //disableButtons();
+            disableButtons();
+            enableButtons();
         }
 
         private void TTT_button_7_Click(object sender, EventArgs e)
         {
             button_handeling(TTT_button_7);
             wincheck();
+            b7 = true;
             count++;
-            //disableButtons();
+            disableButtons();
+            enableButtons();
         }
 
         private void TTT_button_8_Click(object sender, EventArgs e)
         {
             button_handeling(TTT_button_8);
             wincheck();
+            b8 = true;
             count++;
-            //disableButtons();
+            disableButtons();
+            enableButtons();
         }
 
         private void wincheck()
@@ -411,6 +436,50 @@ namespace TTTClient
         }
 
         private void enableButtons()
+        {
+            if (b0 == false)
+            {
+                TTT_button_0.Enabled = true;
+            }
+            if (b1 == false)
+            {
+                TTT_button_1.Enabled = true;
+            }
+            if (b2 == false)
+            {
+                TTT_button_2.Enabled = true;
+            }
+            if (b3 == false)
+            {
+                TTT_button_3.Enabled = true;
+            }
+            if (b4 == false)
+            {
+                TTT_button_4.Enabled = true;
+            }
+            if (b5 == false)
+            {
+                TTT_button_5.Enabled = true;
+            }
+            if (b6 == false)
+            {
+                TTT_button_6.Enabled = true;
+            }
+            if (b7 == false)
+            {
+            TTT_button_7.Enabled = true;
+            }
+            if (b8 == false)
+            {
+            TTT_button_8.Enabled = true;
+            }
+
+            else
+            {
+                wincheck();
+            }
+        }
+        private void allenableButtons()
         {
             TTT_button_0.Enabled = true;
             TTT_button_1.Enabled = true;
