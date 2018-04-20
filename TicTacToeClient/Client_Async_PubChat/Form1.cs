@@ -39,6 +39,7 @@ namespace TTTClient
         int secret_piece_number = 0; //0 by default. The client who requested the game will always be O (0)for now. X = 1, O = 0.
         int wincount = 0;
         int drawcount = 0;
+        bool gamedone = false;
         private void btnConnect_Click(object sender, EventArgs e)
         {
             txtServerIP.Enabled = false;
@@ -326,7 +327,7 @@ namespace TTTClient
 
         private void update_button_text(Button button) {
             if (button.Text != "") return;
-            if (wincheck()) return;
+           // if (wincheck()) return;
             if (turn_count % 2 == 0) {
                 button.Text = "X";
 
@@ -408,6 +409,7 @@ namespace TTTClient
              *  */
             string winning_piece = "";
             winner = false;
+            
             if ((TTT_button_0.Text == TTT_button_1.Text) && (TTT_button_1.Text == TTT_button_2.Text) && (TTT_button_0.Text != "")) {
                 winning_piece = TTT_button_0.Text;
                 winner = true;
@@ -443,9 +445,10 @@ namespace TTTClient
             }
             else {
                 //count++;
-                return false;
+                winner = false;
+               // return false;
             }
-
+            Console.Write("ARE YOU HERE? \r\n");
             if (winner)
             {
        
@@ -472,8 +475,10 @@ namespace TTTClient
                 }
                 return true;
             }
-            if ((count == 9) && (winner == false))
+            Console.Write("WHATS UP? \r\n");
+            if ((turn_count == 9) && (winner == false))
             {
+                Console.Write("NOT YOU \r\n");
                 MessageBox.Show("Draw!", userName.Text);
                 disableButtons();
                 clearButtons();
@@ -494,6 +499,7 @@ namespace TTTClient
                     MessageBox.Show(ex.Message.ToString());
                     //Application.Exit();
                 }
+             
             }
             return false;
 
