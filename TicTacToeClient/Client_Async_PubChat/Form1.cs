@@ -44,10 +44,10 @@ namespace TTTClient
         bool gamedone = false;
         private void btnConnect_Click(object sender, EventArgs e)
         {
-            texttotal.Text = "Total Games Played: " + totalcount.ToString();
+            /*texttotal.Text = "Total Games Played: " + totalcount.ToString();
             textwin.Text = "Wins: " + wincount.ToString();
             textdraw.Text = "Draws: " + drawcount.ToString();
-            textloss.Text = "Losses: " + losscount.ToString();
+            textloss.Text = "Losses: " + losscount.ToString();*/
 
             txtServerIP.Enabled = false;
             //read-in username from user

@@ -49,10 +49,6 @@
             this.TTT_button_6 = new System.Windows.Forms.Button();
             this.TTT_button_7 = new System.Windows.Forms.Button();
             this.TTT_button_8 = new System.Windows.Forms.Button();
-            this.texttotal = new System.Windows.Forms.TextBox();
-            this.textwin = new System.Windows.Forms.TextBox();
-            this.textdraw = new System.Windows.Forms.TextBox();
-            this.textloss = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // textBox1
@@ -165,6 +161,7 @@
             // 
             // TTT_button_0
             // 
+            this.TTT_button_0.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.TTT_button_0.Location = new System.Drawing.Point(275, 81);
             this.TTT_button_0.Name = "TTT_button_0";
             this.TTT_button_0.Size = new System.Drawing.Size(77, 77);
@@ -174,6 +171,7 @@
             // 
             // TTT_button_1
             // 
+            this.TTT_button_1.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.TTT_button_1.Location = new System.Drawing.Point(358, 81);
             this.TTT_button_1.Name = "TTT_button_1";
             this.TTT_button_1.Size = new System.Drawing.Size(77, 77);
@@ -183,6 +181,7 @@
             // 
             // TTT_button_2
             // 
+            this.TTT_button_2.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.TTT_button_2.Location = new System.Drawing.Point(441, 81);
             this.TTT_button_2.Name = "TTT_button_2";
             this.TTT_button_2.Size = new System.Drawing.Size(77, 77);
@@ -192,6 +191,7 @@
             // 
             // TTT_button_3
             // 
+            this.TTT_button_3.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.TTT_button_3.Location = new System.Drawing.Point(275, 164);
             this.TTT_button_3.Name = "TTT_button_3";
             this.TTT_button_3.Size = new System.Drawing.Size(77, 77);
@@ -201,6 +201,7 @@
             // 
             // TTT_button_4
             // 
+            this.TTT_button_4.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.TTT_button_4.Location = new System.Drawing.Point(358, 164);
             this.TTT_button_4.Name = "TTT_button_4";
             this.TTT_button_4.Size = new System.Drawing.Size(77, 77);
@@ -210,6 +211,7 @@
             // 
             // TTT_button_5
             // 
+            this.TTT_button_5.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.TTT_button_5.Location = new System.Drawing.Point(441, 164);
             this.TTT_button_5.Name = "TTT_button_5";
             this.TTT_button_5.Size = new System.Drawing.Size(77, 77);
@@ -219,6 +221,7 @@
             // 
             // TTT_button_6
             // 
+            this.TTT_button_6.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.TTT_button_6.Location = new System.Drawing.Point(275, 247);
             this.TTT_button_6.Name = "TTT_button_6";
             this.TTT_button_6.Size = new System.Drawing.Size(77, 77);
@@ -228,6 +231,7 @@
             // 
             // TTT_button_7
             // 
+            this.TTT_button_7.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.TTT_button_7.Location = new System.Drawing.Point(358, 247);
             this.TTT_button_7.Name = "TTT_button_7";
             this.TTT_button_7.Size = new System.Drawing.Size(77, 77);
@@ -237,6 +241,7 @@
             // 
             // TTT_button_8
             // 
+            this.TTT_button_8.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.TTT_button_8.Location = new System.Drawing.Point(441, 247);
             this.TTT_button_8.Name = "TTT_button_8";
             this.TTT_button_8.Size = new System.Drawing.Size(77, 77);
@@ -244,43 +249,11 @@
             this.TTT_button_8.UseVisualStyleBackColor = true;
             this.TTT_button_8.Click += new System.EventHandler(this.TTT_button_8_Click);
             // 
-            // texttotal
-            // 
-            this.texttotal.Location = new System.Drawing.Point(18, 273);
-            this.texttotal.Name = "texttotal";
-            this.texttotal.Size = new System.Drawing.Size(141, 20);
-            this.texttotal.TabIndex = 31;
-            // 
-            // textwin
-            // 
-            this.textwin.Location = new System.Drawing.Point(18, 299);
-            this.textwin.Name = "textwin";
-            this.textwin.Size = new System.Drawing.Size(141, 20);
-            this.textwin.TabIndex = 32;
-            // 
-            // textdraw
-            // 
-            this.textdraw.Location = new System.Drawing.Point(18, 325);
-            this.textdraw.Name = "textdraw";
-            this.textdraw.Size = new System.Drawing.Size(141, 20);
-            this.textdraw.TabIndex = 33;
-            // 
-            // textloss
-            // 
-            this.textloss.Location = new System.Drawing.Point(18, 351);
-            this.textloss.Name = "textloss";
-            this.textloss.Size = new System.Drawing.Size(141, 20);
-            this.textloss.TabIndex = 34;
-            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(898, 543);
-            this.Controls.Add(this.textloss);
-            this.Controls.Add(this.textdraw);
-            this.Controls.Add(this.textwin);
-            this.Controls.Add(this.texttotal);
             this.Controls.Add(this.TTT_button_8);
             this.Controls.Add(this.TTT_button_7);
             this.Controls.Add(this.TTT_button_6);
@@ -333,10 +306,6 @@
         private System.Windows.Forms.Button TTT_button_6;
         private System.Windows.Forms.Button TTT_button_7;
         private System.Windows.Forms.Button TTT_button_8;
-        private System.Windows.Forms.TextBox texttotal;
-        private System.Windows.Forms.TextBox textwin;
-        private System.Windows.Forms.TextBox textdraw;
-        private System.Windows.Forms.TextBox textloss;
     }
 }
 
