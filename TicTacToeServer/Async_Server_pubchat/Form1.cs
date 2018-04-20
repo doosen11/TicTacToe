@@ -25,7 +25,9 @@ namespace TTTServer
         private List<string> List_msgs = new List<string>();
         private List<string> games = new List<string>(); //contains list of who is playing who in this format "username1#username2"
         private List<string> users_in_game = new List<string>(); //contains list of what users are in a game, singular. Different from above
-        string who_played_last = ""; //these two variables are used for limiting turns to one per player
+        private List<string> who_played_last = new List<string>(); //these two variables are used for limiting turns to one per player
+        
+        
         public Form1()
         {
             InitializeComponent();
@@ -175,17 +177,15 @@ namespace TTTServer
                         turn_number++;
                         socketitem one_sock = clientSockets.FirstOrDefault(o => o.name == one);
                         socketitem two_sock = clientSockets.FirstOrDefault(o => o.name == two);
-                        if (msg_fields[0] != who_played_last) {
-                            who_played_last = msg_fields[0];
-
-
-
-
+                        if(!one_sock.took_turn_last){
+                            one_sock.took_turn_last = true;
+                            two_sock.took_turn_last = false;
                             string hmmm = "MOVE" + ">" + "server" + ">turn_taken>" + turn_number.ToString() + ">" + msg_fields[5];
                             send_to_client(one_sock.msock, hmmm);
                             send_to_client(two_sock.msock, hmmm);
                         }
                         else {
+                            two_sock.took_turn_last = false;
                             string hmmm = "CHEATER" + ">" + "server" + ">cheating>" + turn_number.ToString() + ">" + msg_fields[5];
                             send_to_client(one_sock.msock, hmmm);
                             //send_to_client(two_sock.msock, hmmm);
@@ -240,6 +240,8 @@ namespace TTTServer
                     clientSockets.Remove(opp2);
                     opp.status = "Playing";
                     opp2.status = "Playing";
+                    opp.took_turn_last = false;
+                    opp.took_turn_last = false;
                     clientSockets.Add(opp);
                     clientSockets.Add(opp2);
                     send_to_client(opp.msock, message);
@@ -345,6 +347,7 @@ namespace TTTServer
         public Socket msock { get; set; }
         public string name { get; set; }
         public string status { get; set; }
+        public bool took_turn_last { get; set; }
         public socketitem(Socket sock)
         {
             this.msock = sock;
