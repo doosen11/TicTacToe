@@ -179,15 +179,36 @@ namespace TTTServer
                         socketitem two_sock = clientSockets.FirstOrDefault(o => o.name == two);
                         if(!one_sock.took_turn_last){
                             one_sock.took_turn_last = true;
-                            two_sock.took_turn_last = false;
+                            try
+                            {
+                                two_sock.took_turn_last = false;
+                            }
+                            catch (NullReferenceException ex)
+                            {
+                                MessageBox.Show(ex.Message.ToString());
+                            }
                             string hmmm = "MOVE" + ">" + "server" + ">turn_taken>" + turn_number.ToString() + ">" + msg_fields[5];
                             send_to_client(one_sock.msock, hmmm);
-                            send_to_client(two_sock.msock, hmmm);
+                            try
+                            {
+                                send_to_client(two_sock.msock, hmmm);
+                            }
+                            catch (NullReferenceException ex)
+                            {
+                                MessageBox.Show(ex.Message.ToString());
+                            }
                         }
                         else {
                             try
                             {
-                                two_sock.took_turn_last = false;
+                                try
+                                {
+                                    two_sock.took_turn_last = false;
+                                }
+                                catch (NullReferenceException ex)
+                                {
+                                    MessageBox.Show(ex.Message.ToString());
+                                }
                             }
                             catch (SocketException ex)
                             {

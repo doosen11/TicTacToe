@@ -28,3 +28,24 @@ C:\Users\dsimo\Desktop\New folder\TicTacToeServer\Async_Server_pubchat\bin\Debug
 C:\Users\dsimo\Desktop\New folder\TicTacToeServer\Async_Server_pubchat\obj\Debug\Async_Server_pubchat.exe
 C:\Users\dsimo\Desktop\New folder\TicTacToeServer\Async_Server_pubchat\obj\Debug\Async_Server_pubchat.pdb
 C:\Users\Dawson\Documents\GitHub\TicTacToe2\TicTacToeServer\Async_Server_pubchat\obj\Debug\TTTServer.csprojResolveAssemblyReference.cache
+E:\TicTacToe\TicTacToeServer\Async_Server_pubchat\bin\Debug\Async_Server_pubchat.exe.config
+E:\TicTacToe\TicTacToeServer\Async_Server_pubchat\obj\Debug\Async_Server_pubchat.exe
+E:\TicTacToe\TicTacToeServer\Async_Server_pubchat\obj\Debug\Async_Server_pubchat.pdb
+E:\TicTacToe\TicTacToeServer\Async_Server_pubchat\bin\Debug\Async_Server_pubchat.exe
+E:\TicTacToe\TicTacToeServer\Async_Server_pubchat\bin\Debug\Async_Server_pubchat.pdb
+E:\TicTacToe\TicTacToeServer\Async_Server_pubchat\obj\Debug\TTTServer.csprojResolveAssemblyReference.cache
+E:\TicTacToe\TicTacToeServer\Async_Server_pubchat\obj\Debug\TTTServer.Form1.resources
+E:\TicTacToe\TicTacToeServer\Async_Server_pubchat\obj\Debug\TTTServer.Properties.Resources.resources
+E:\TicTacToe\TicTacToeServer\Async_Server_pubchat\obj\Debug\TTTServer.csproj.GenerateResource.Cache
+C:\Users\EE Student\Desktop\TicTacToe\TicTacToeServer\Async_Server_pubchat\bin\Debug\Async_Server_pubchat.exe.config
+C:\Users\EE Student\Desktop\TicTacToe\TicTacToeServer\Async_Server_pubchat\obj\Debug\Async_Server_pubchat.exe
+C:\Users\EE Student\Desktop\TicTacToe\TicTacToeServer\Async_Server_pubchat\obj\Debug\Async_Server_pubchat.pdb
+C:\Users\Networks Class\Desktop\TicTacToe\TicTacToeServer\Async_Server_pubchat\bin\Debug\Async_Server_pubchat.exe.config
+C:\Users\Networks Class\Desktop\TicTacToe\TicTacToeServer\Async_Server_pubchat\obj\Debug\Async_Server_pubchat.exe
+C:\Users\Networks Class\Desktop\TicTacToe\TicTacToeServer\Async_Server_pubchat\obj\Debug\Async_Server_pubchat.pdb
+C:\Users\Networks Class\Desktop\TicTacToe\TicTacToeServer\Async_Server_pubchat\bin\Debug\Async_Server_pubchat.exe
+C:\Users\Networks Class\Desktop\TicTacToe\TicTacToeServer\Async_Server_pubchat\bin\Debug\Async_Server_pubchat.pdb
+C:\Users\Networks Class\Desktop\TicTacToe\TicTacToeServer\Async_Server_pubchat\obj\Debug\TTTServer.csprojResolveAssemblyReference.cache
+C:\Users\Networks Class\Desktop\TicTacToe\TicTacToeServer\Async_Server_pubchat\obj\Debug\TTTServer.Form1.resources
+C:\Users\Networks Class\Desktop\TicTacToe\TicTacToeServer\Async_Server_pubchat\obj\Debug\TTTServer.Properties.Resources.resources
+C:\Users\Networks Class\Desktop\TicTacToe\TicTacToeServer\Async_Server_pubchat\obj\Debug\TTTServer.csproj.GenerateResource.Cache

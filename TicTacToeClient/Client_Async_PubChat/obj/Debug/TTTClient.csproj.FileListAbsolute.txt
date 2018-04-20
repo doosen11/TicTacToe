@@ -15,3 +15,30 @@ C:\Users\dsimo\Documents\GitHub\TicTacToe\TicTacToeClient\Client_Async_PubChat\o
 C:\Users\dsimo\Documents\GitHub\TicTacToe\TicTacToeClient\Client_Async_PubChat\obj\Debug\TTTClient.Properties.Resources.resources
 C:\Users\dsimo\Documents\GitHub\TicTacToe\TicTacToeClient\Client_Async_PubChat\obj\Debug\TTTClient.csproj.GenerateResource.Cache
 C:\Users\dsimo\Documents\GitHub\TicTacToe\TicTacToeClient\Client_Async_PubChat\obj\Debug\TTTClient.csprojResolveAssemblyReference.cache
+E:\TicTacToe\TicTacToeClient\Client_Async_PubChat\bin\Debug\TTTClient.exe.config
+E:\TicTacToe\TicTacToeClient\Client_Async_PubChat\obj\Debug\TTTClient.exe
+E:\TicTacToe\TicTacToeClient\Client_Async_PubChat\obj\Debug\TTTClient.pdb
+E:\TicTacToe\TicTacToeClient\Client_Async_PubChat\obj\Debug\TTTClient.csprojResolveAssemblyReference.cache
+E:\TicTacToe\TicTacToeClient\Client_Async_PubChat\obj\Debug\TTTClient.Form1.resources
+E:\TicTacToe\TicTacToeClient\Client_Async_PubChat\obj\Debug\TTTClient.Properties.Resources.resources
+E:\TicTacToe\TicTacToeClient\Client_Async_PubChat\obj\Debug\TTTClient.csproj.GenerateResource.Cache
+E:\TicTacToe\TicTacToeClient\Client_Async_PubChat\bin\Debug\TTTClient.exe
+E:\TicTacToe\TicTacToeClient\Client_Async_PubChat\bin\Debug\TTTClient.pdb
+C:\Users\EE Student\Desktop\TicTacToe\TicTacToeClient\Client_Async_PubChat\bin\Debug\TTTClient.exe.config
+C:\Users\EE Student\Desktop\TicTacToe\TicTacToeClient\Client_Async_PubChat\obj\Debug\TTTClient.exe
+C:\Users\EE Student\Desktop\TicTacToe\TicTacToeClient\Client_Async_PubChat\obj\Debug\TTTClient.pdb
+C:\Users\EE Student\Desktop\TicTacToe\TicTacToeClient\Client_Async_PubChat\obj\Debug\TTTClient.csprojResolveAssemblyReference.cache
+C:\Users\EE Student\Desktop\TicTacToe\TicTacToeClient\Client_Async_PubChat\obj\Debug\TTTClient.Form1.resources
+C:\Users\EE Student\Desktop\TicTacToe\TicTacToeClient\Client_Async_PubChat\obj\Debug\TTTClient.Properties.Resources.resources
+C:\Users\EE Student\Desktop\TicTacToe\TicTacToeClient\Client_Async_PubChat\obj\Debug\TTTClient.csproj.GenerateResource.Cache
+C:\Users\EE Student\Desktop\TicTacToe\TicTacToeClient\Client_Async_PubChat\bin\Debug\TTTClient.exe
+C:\Users\EE Student\Desktop\TicTacToe\TicTacToeClient\Client_Async_PubChat\bin\Debug\TTTClient.pdb
+C:\Users\Networks Class\Desktop\TicTacToe\TicTacToeClient\Client_Async_PubChat\bin\Debug\TTTClient.exe.config
+C:\Users\Networks Class\Desktop\TicTacToe\TicTacToeClient\Client_Async_PubChat\obj\Debug\TTTClient.exe
+C:\Users\Networks Class\Desktop\TicTacToe\TicTacToeClient\Client_Async_PubChat\obj\Debug\TTTClient.pdb
+C:\Users\Networks Class\Desktop\TicTacToe\TicTacToeClient\Client_Async_PubChat\bin\Debug\TTTClient.exe
+C:\Users\Networks Class\Desktop\TicTacToe\TicTacToeClient\Client_Async_PubChat\bin\Debug\TTTClient.pdb
+C:\Users\Networks Class\Desktop\TicTacToe\TicTacToeClient\Client_Async_PubChat\obj\Debug\TTTClient.csprojResolveAssemblyReference.cache
+C:\Users\Networks Class\Desktop\TicTacToe\TicTacToeClient\Client_Async_PubChat\obj\Debug\TTTClient.Form1.resources
+C:\Users\Networks Class\Desktop\TicTacToe\TicTacToeClient\Client_Async_PubChat\obj\Debug\TTTClient.Properties.Resources.resources
+C:\Users\Networks Class\Desktop\TicTacToe\TicTacToeClient\Client_Async_PubChat\obj\Debug\TTTClient.csproj.GenerateResource.Cache

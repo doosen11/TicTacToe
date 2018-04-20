@@ -28,6 +28,7 @@ namespace TTTClient
         string myusername = "";
         private int size = 1024;
 
+       
         string ReqUser;
         string player_status = "Waiting";//Waiting is default
         string player_game_status = "";//X or O will be assigned when game starts
@@ -51,15 +52,16 @@ namespace TTTClient
 
             txtServerIP.Enabled = false;
             //read-in username from user
-            //do
-            //{
-            myusername = Microsoft.VisualBasic.Interaction.InputBox("Enter Username:", "User Login", "");
-            Application.DoEvents();
-            //while (myusername == "");
-            if (myusername == "")
+            do
             {
-                myusername = "User";
+                myusername = Microsoft.VisualBasic.Interaction.InputBox("Enter Username:", "User Login", "");
+                Application.DoEvents();
             }
+            while (myusername == "");
+            //if (myusername == "")
+            //{
+            //    myusername = "User";
+            //}
             userName.Text = myusername;
             Application.DoEvents();
 
@@ -174,6 +176,7 @@ namespace TTTClient
                         break;
                     case "turn_taken":
                         turn_count = int.Parse(msg_rec[3]);
+                            
                         switch (msg_rec[4]) {
                             case "TTT_button_0":
                                 update_button_text(TTT_button_0);
@@ -202,6 +205,7 @@ namespace TTTClient
                             case "TTT_button_8":
                                 update_button_text(TTT_button_8);
                                 break;
+
                         }
 
                         break;
@@ -312,15 +316,22 @@ namespace TTTClient
             ReqUser = Microsoft.VisualBasic.Interaction.InputBox("Enter Username: ", "User Login", ""); ;
             //string temp = lstUsers.SelectedItem.ToString().Substring(0, lstUsers.SelectedItem.ToString().Length - 13);
             //player_status = "Playing";
-            string msg = myusername + ">" + "server" + ">request_game>" + ReqUser + ">";
-            byte[] bin_msg = Encoding.ASCII.GetBytes(msg);
-            try
+            if (ReqUser != myusername)
             {
-                _client.Send(bin_msg);
+                string msg = myusername + ">" + "server" + ">request_game>" + ReqUser + ">";
+                byte[] bin_msg = Encoding.ASCII.GetBytes(msg);
+                try
+                {
+                    _client.Send(bin_msg);
+                }
+                catch (SocketException ex)
+                {
+                    MessageBox.Show(ex.Message.ToString());
+                }
             }
-            catch (SocketException ex)
+            else
             {
-                MessageBox.Show(ex.Message.ToString());
+                return;
             }
         }
 
@@ -336,7 +347,13 @@ namespace TTTClient
         }
 
         private void update_button_text(Button button) {
-            if (button.Text != "") return;
+            if (button.Text != "")
+            {
+                
+                MessageBox.Show("Someone just done wasted a turn.", "PEBCAK", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+               
+                return;
+            }
            // if (wincheck()) return;
             if (turn_count % 2 == 0) {
                 button.Text = "X";
@@ -363,7 +380,6 @@ namespace TTTClient
         private void TTT_button_2_Click(object sender, EventArgs e)
         {
             button_handeling(TTT_button_2);
-            
             count++;
         }
 
