@@ -51,15 +51,16 @@ namespace TTTClient
 
             txtServerIP.Enabled = false;
             //read-in username from user
-            //do
-            //{
-            myusername = Microsoft.VisualBasic.Interaction.InputBox("Enter Username:", "User Login", "");
-            Application.DoEvents();
-            //while (myusername == "");
-            if (myusername == "")
+            do
             {
-                myusername = "User";
+                myusername = Microsoft.VisualBasic.Interaction.InputBox("Enter Username:", "User Login", "");
+                Application.DoEvents();
             }
+            while (myusername == "");
+            //if (myusername == "")
+            //{
+            //    myusername = "User";
+            //}
             userName.Text = myusername;
             Application.DoEvents();
 
@@ -312,15 +313,22 @@ namespace TTTClient
             ReqUser = Microsoft.VisualBasic.Interaction.InputBox("Enter Username: ", "User Login", ""); ;
             //string temp = lstUsers.SelectedItem.ToString().Substring(0, lstUsers.SelectedItem.ToString().Length - 13);
             //player_status = "Playing";
-            string msg = myusername + ">" + "server" + ">request_game>" + ReqUser + ">";
-            byte[] bin_msg = Encoding.ASCII.GetBytes(msg);
-            try
+            if (ReqUser != myusername)
             {
-                _client.Send(bin_msg);
+                string msg = myusername + ">" + "server" + ">request_game>" + ReqUser + ">";
+                byte[] bin_msg = Encoding.ASCII.GetBytes(msg);
+                try
+                {
+                    _client.Send(bin_msg);
+                }
+                catch (SocketException ex)
+                {
+                    MessageBox.Show(ex.Message.ToString());
+                }
             }
-            catch (SocketException ex)
+            else
             {
-                MessageBox.Show(ex.Message.ToString());
+                return;
             }
         }
 
