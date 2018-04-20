@@ -301,67 +301,71 @@ namespace TTTClient
 
         private void button_handeling(Button caller) {
             //if (player_status == "Waiting") return; //return if player is not in game
+
+            
             string msg;
             msg = myusername + ">" + "server" + ">move>" + opponent + ">" + turn_count.ToString() + ">" + caller.Name + ">" + secret_piece_number;
             byte[] bin_msg = Encoding.ASCII.GetBytes(msg);
             _client.Send(bin_msg);
+         //   if (wincheck()) return;
         }
 
         private void update_button_text(Button button) {
+            if (button.Text != "") return;
+            if (wincheck()) return;
             if (turn_count % 2 == 0) {
                 button.Text = "X";
 
             }
             else button.Text = "O";
+            wincheck(); 
         }
         private void TTT_button_0_Click(object sender, EventArgs e)
         {
+            
             button_handeling(TTT_button_0);
-            wincheck();
             count++;
-            disableButtons();
-            enableButtons();
+            
         }
 
         private void TTT_button_1_Click(object sender, EventArgs e)
         {
             button_handeling(TTT_button_1);
-            wincheck();
+          
             count++;
         }
 
         private void TTT_button_2_Click(object sender, EventArgs e)
         {
             button_handeling(TTT_button_2);
-            wincheck();
+            
             count++;
         }
 
         private void TTT_button_3_Click(object sender, EventArgs e)
         {
             button_handeling(TTT_button_3);
-            wincheck();
+            
             count++;
         }
 
         private void TTT_button_4_Click(object sender, EventArgs e)
         {
             button_handeling(TTT_button_4);
-            wincheck();
             count++;
         }
 
         private void TTT_button_5_Click(object sender, EventArgs e)
         {
             button_handeling(TTT_button_5);
-            wincheck();
+
             count++;
         }
 
         private void TTT_button_6_Click(object sender, EventArgs e)
         {
             button_handeling(TTT_button_6);
-            wincheck();
+
             count++;
            
         }
@@ -369,7 +373,7 @@ namespace TTTClient
         private void TTT_button_7_Click(object sender, EventArgs e)
         {
             button_handeling(TTT_button_7);
-            wincheck();
+
             count++;
            
         }
@@ -377,53 +381,82 @@ namespace TTTClient
         private void TTT_button_8_Click(object sender, EventArgs e)
         {
             button_handeling(TTT_button_8);
-            wincheck();
             count++;
          
         }
 
-        private void wincheck()
+        private bool wincheck()
         {
-            if ((TTT_button_0.Text == TTT_button_1.Text) && (TTT_button_1.Text == TTT_button_2.Text) && (TTT_button_0.Text != ""))
+
+            /** 0 1 2
+             *  3 4 5 
+             *  6 7 8
+             *  */
+            string winning_piece = "";
+            winner = false;
+            if ((TTT_button_0.Text == TTT_button_1.Text) && (TTT_button_1.Text == TTT_button_2.Text) && (TTT_button_0.Text != "")) {
+                winning_piece = TTT_button_0.Text;
                 winner = true;
-            else if ((TTT_button_3.Text == TTT_button_4.Text) && (TTT_button_4.Text == TTT_button_5.Text) && (TTT_button_3.Text != ""))
+            }
+            else if ((TTT_button_3.Text == TTT_button_4.Text) && (TTT_button_4.Text == TTT_button_5.Text) && (TTT_button_3.Text != "")) {
+                winning_piece = TTT_button_3.Text;
                 winner = true;
-            else if ((TTT_button_6.Text == TTT_button_7.Text) && (TTT_button_7.Text == TTT_button_8.Text) && (TTT_button_6.Text != ""))
+            }
+            else if ((TTT_button_6.Text == TTT_button_7.Text) && (TTT_button_7.Text == TTT_button_8.Text) && (TTT_button_6.Text != "")) {
+                winning_piece = TTT_button_6.Text;
                 winner = true;
-            else if ((TTT_button_0.Text == TTT_button_4.Text) && (TTT_button_4.Text == TTT_button_8.Text) && (TTT_button_0.Text != ""))
+            }
+            else if ((TTT_button_0.Text == TTT_button_4.Text) && (TTT_button_4.Text == TTT_button_8.Text) && (TTT_button_0.Text != "")) {
+                winning_piece = TTT_button_0.Text;
                 winner = true;
-            else if ((TTT_button_2.Text == TTT_button_4.Text) && (TTT_button_4.Text == TTT_button_6.Text) && (TTT_button_2.Text != ""))
+            }
+            else if ((TTT_button_2.Text == TTT_button_4.Text) && (TTT_button_4.Text == TTT_button_6.Text) && (TTT_button_2.Text != "")) {
+                winning_piece = TTT_button_2.Text;
                 winner = true;
-            else if ((TTT_button_2.Text == TTT_button_5.Text) && (TTT_button_5.Text == TTT_button_8.Text) && (TTT_button_5.Text != ""))
+            }
+
+            else if ((TTT_button_2.Text == TTT_button_5.Text) && (TTT_button_5.Text == TTT_button_8.Text) && (TTT_button_5.Text != "")) {
+                winning_piece = TTT_button_2.Text;
                 winner = true;
-            else if ((TTT_button_1.Text == TTT_button_4.Text) && (TTT_button_4.Text == TTT_button_7.Text) && (TTT_button_1.Text != ""))
+            }
+            else if ((TTT_button_1.Text == TTT_button_4.Text) && (TTT_button_4.Text == TTT_button_7.Text) && (TTT_button_1.Text != "")) {
+                winning_piece = TTT_button_1.Text;
                 winner = true;
-            else if ((TTT_button_0.Text == TTT_button_3.Text) && (TTT_button_3.Text == TTT_button_6.Text) && (TTT_button_0.Text != ""))
+            }
+            else if ((TTT_button_0.Text == TTT_button_3.Text) && (TTT_button_3.Text == TTT_button_6.Text) && (TTT_button_0.Text != "")) {
+                winning_piece = TTT_button_0.Text;
                 winner = true;
-            else
-            {
+            }
+            else {
                 //count++;
-                return;
+                return false;
             }
 
             if (winner)
             {
-                String message = "";
-                if (secret_piece_number == 0)
-                {
-                    message = "O";
-                }
-                else
-                {
-                    message = "X";
-                }
+       
 
-                MessageBox.Show(message + " Wins!", userName.Text);
+                MessageBox.Show(winning_piece + " Wins!", userName.Text);
                 disableButtons();
                 clearButtons();
                 wincount++;
                 winner = false;
                 count = 0;
+                string msg = myusername + ">" + "server" + ">end_game>" + opponent + ">";
+                byte[] bin_msg = Encoding.ASCII.GetBytes(msg);
+                try {
+                    try {
+                        _client.Send(bin_msg);
+                    }
+                    catch (SocketException ex) {
+                        MessageBox.Show(ex.Message.ToString());
+                    }
+                }
+                catch (NullReferenceException ex) {
+                    MessageBox.Show(ex.Message.ToString());
+                    //Application.Exit();
+                }
+                return true;
             }
             if ((count == 9) && (winner == false))
             {
@@ -433,7 +466,22 @@ namespace TTTClient
                 drawcount++;
                 winner = false;
                 count = 0;
+                string msg = myusername + ">" + "server" + ">end_game>" + opponent + ">";
+                byte[] bin_msg = Encoding.ASCII.GetBytes(msg);
+                try {
+                    try {
+                        _client.Send(bin_msg);
+                    }
+                    catch (SocketException ex) {
+                        MessageBox.Show(ex.Message.ToString());
+                    }
+                }
+                catch (NullReferenceException ex) {
+                    MessageBox.Show(ex.Message.ToString());
+                    //Application.Exit();
+                }
             }
+            return false;
 
         }
         private void disableButtons()
