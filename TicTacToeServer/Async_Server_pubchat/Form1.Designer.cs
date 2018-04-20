@@ -101,7 +101,7 @@
             this.Controls.Add(this.btnStartServer);
             this.Controls.Add(this.txt1);
             this.Name = "Form1";
-            this.Text = "Asynchronous Socket Demo: Public Chat Server";
+            this.Text = "TTT Server";
             this.Shown += new System.EventHandler(this.Form1_Shown);
             this.ResumeLayout(false);
             this.PerformLayout();
