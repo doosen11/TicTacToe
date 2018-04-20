@@ -295,6 +295,7 @@ namespace TTTClient
              * 
              *************************************************** */
             allenableButtons();
+            clearButtons();
             if (myusername == "") return;
             // if (player_status == "Playing") return;//shouldn't ever happen if the button gets disabled properly
             ReqUser = Microsoft.VisualBasic.Interaction.InputBox("Enter Username: ", "User Login", ""); ;
