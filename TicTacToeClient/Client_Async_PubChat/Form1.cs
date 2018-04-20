@@ -36,7 +36,7 @@ namespace TTTClient
         bool winner = false;
         int count = 0;
         int turn_count = 0;
-        bool secret_piece_number = false; //0 by default. The client who requested the game will always be O (0)for now. X = 1, O = 0.
+        int secret_piece_number = 0; //0 by default. The client who requested the game will always be O (0)for now. X = 1, O = 0.
         int wincount = 0;
         int drawcount = 0;
         private void btnConnect_Click(object sender, EventArgs e)
@@ -127,7 +127,7 @@ namespace TTTClient
                             msg = myusername + ">" + "server>" + "accept_game" + ">" + msg_rec[3] + ">";
                             enableButtons();
 
-                            secret_piece_number = true;//player is now X
+                            secret_piece_number = 1;//player is now X
                         }
                         else if (dialogResult == DialogResult.No) {
                             //send rejection
@@ -193,6 +193,9 @@ namespace TTTClient
                     case "shutdown":
                         _client.Shutdown(SocketShutdown.Both);
                         DialogResult shutdown = MessageBox.Show("The server has unexpectadly closed. Please reconnect later.", "Unexpexted Shutdown", MessageBoxButtons.OK);
+                        break;
+                    case "cheating":
+                        DialogResult cheat = MessageBox.Show("You can't take two turns in a row you cheater!", "CHEATER", MessageBoxButtons.OK);
                         break;
                     default:
                         break;
@@ -299,7 +302,7 @@ namespace TTTClient
         private void button_handeling(Button caller) {
             //if (player_status == "Waiting") return; //return if player is not in game
             string msg;
-            msg = myusername + ">" + "server" + ">move>" + opponent + ">" + turn_count.ToString() + ">" + caller.Name + ">";
+            msg = myusername + ">" + "server" + ">move>" + opponent + ">" + turn_count.ToString() + ">" + caller.Name + ">" + secret_piece_number;
             byte[] bin_msg = Encoding.ASCII.GetBytes(msg);
             _client.Send(bin_msg);
         }
@@ -325,8 +328,6 @@ namespace TTTClient
             button_handeling(TTT_button_1);
             wincheck();
             count++;
-            disableButtons();
-            enableButtons();
         }
 
         private void TTT_button_2_Click(object sender, EventArgs e)
@@ -334,8 +335,6 @@ namespace TTTClient
             button_handeling(TTT_button_2);
             wincheck();
             count++;
-            disableButtons();
-            enableButtons();
         }
 
         private void TTT_button_3_Click(object sender, EventArgs e)
@@ -343,8 +342,6 @@ namespace TTTClient
             button_handeling(TTT_button_3);
             wincheck();
             count++;
-            disableButtons();
-            enableButtons();
         }
 
         private void TTT_button_4_Click(object sender, EventArgs e)
@@ -352,8 +349,6 @@ namespace TTTClient
             button_handeling(TTT_button_4);
             wincheck();
             count++;
-            disableButtons();
-            enableButtons();
         }
 
         private void TTT_button_5_Click(object sender, EventArgs e)
@@ -361,8 +356,6 @@ namespace TTTClient
             button_handeling(TTT_button_5);
             wincheck();
             count++;
-            disableButtons();
-            enableButtons();
         }
 
         private void TTT_button_6_Click(object sender, EventArgs e)
@@ -370,8 +363,7 @@ namespace TTTClient
             button_handeling(TTT_button_6);
             wincheck();
             count++;
-            disableButtons();
-            enableButtons();
+           
         }
 
         private void TTT_button_7_Click(object sender, EventArgs e)
@@ -379,8 +371,7 @@ namespace TTTClient
             button_handeling(TTT_button_7);
             wincheck();
             count++;
-            disableButtons();
-            enableButtons();
+           
         }
 
         private void TTT_button_8_Click(object sender, EventArgs e)
@@ -388,8 +379,7 @@ namespace TTTClient
             button_handeling(TTT_button_8);
             wincheck();
             count++;
-            disableButtons();
-            enableButtons();
+         
         }
 
         private void wincheck()
@@ -419,7 +409,7 @@ namespace TTTClient
             if (winner)
             {
                 String message = "";
-                if (secret_piece_number)
+                if (secret_piece_number == 0)
                 {
                     message = "O";
                 }

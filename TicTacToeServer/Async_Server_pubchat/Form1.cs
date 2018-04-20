@@ -25,7 +25,7 @@ namespace TTTServer
         private List<string> List_msgs = new List<string>();
         private List<string> games = new List<string>(); //contains list of who is playing who in this format "username1#username2"
         private List<string> users_in_game = new List<string>(); //contains list of what users are in a game, singular. Different from above
-
+        string who_played_last = ""; //these two variables are used for limiting turns to one per player
         public Form1()
         {
             InitializeComponent();
@@ -165,20 +165,31 @@ namespace TTTServer
                     //msg_fields[3] => opponent username
                     //msg_fields[4] => game turn count (parse to int)
                     //msg_fields[5] => buttonname that was pressed
+                    //msg_fields[6] => whos turn it is. 1 for one_sock and 2 for two_sock
                     string one = msg_fields[0];
                     string two = msg_fields[3];
                     if (games.Contains(one + "#" + two) || games.Contains(two + "#" + one)) {
-                        Console.Write("HELLO. IS IT YOU?");
+                        
                         //there exissts a game between user one and user two.
                         int turn_number = int.Parse(msg_fields[4]);
                         turn_number++;
                         socketitem one_sock = clientSockets.FirstOrDefault(o => o.name == one);
                         socketitem two_sock = clientSockets.FirstOrDefault(o => o.name == two);
-                        
-                        string hmmm = "MOVE" + ">" + "server" + ">turn_taken>" + turn_number.ToString() + ">" + msg_fields[5];
-                        send_to_client(one_sock.msock, hmmm);
-                        send_to_client(two_sock.msock, hmmm);
+                        if (msg_fields[0] != who_played_last) {
+                            who_played_last = msg_fields[0];
 
+
+
+
+                            string hmmm = "MOVE" + ">" + "server" + ">turn_taken>" + turn_number.ToString() + ">" + msg_fields[5];
+                            send_to_client(one_sock.msock, hmmm);
+                            send_to_client(two_sock.msock, hmmm);
+                        }
+                        else {
+                            string hmmm = "CHEATER" + ">" + "server" + ">cheating>" + turn_number.ToString() + ">" + msg_fields[5];
+                            send_to_client(one_sock.msock, hmmm);
+                            //send_to_client(two_sock.msock, hmmm);
+                        }
                     }
                     break;
                 case "request_game":
