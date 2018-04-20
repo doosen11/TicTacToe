@@ -43,11 +43,17 @@ namespace TTTClient
         {
             txtServerIP.Enabled = false;
             //read-in username from user
-            do
+            //do
+            //{
+            myusername = Microsoft.VisualBasic.Interaction.InputBox("Enter Username:", "User Login", "");
+            Application.DoEvents();
+            //while (myusername == "");
+            ///////////////////////////////////////////////
+            if (myusername == "")
             {
-                myusername = Microsoft.VisualBasic.Interaction.InputBox("Enter Username:", "User Login", "");
-                Application.DoEvents();
-            } while (myusername == "");
+                myusername = "User";
+            }
+            ///////////////////////////////////////////////
             userName.Text = myusername;
             Application.DoEvents();
 
@@ -205,7 +211,14 @@ namespace TTTClient
                // _client.Close();
                 Application.Exit();
             }
-            _client.BeginReceive(bdata, 0, size, SocketFlags.None, new AsyncCallback(ReceiveData), _client);
+            try
+            {
+                _client.BeginReceive(bdata, 0, size, SocketFlags.None, new AsyncCallback(ReceiveData), _client);
+            }
+            catch (ObjectDisposedException ex)
+            {
+                MessageBox.Show(ex.Message.ToString());
+            }
         }
 
         private void btnSend_Click(object sender, EventArgs e)
