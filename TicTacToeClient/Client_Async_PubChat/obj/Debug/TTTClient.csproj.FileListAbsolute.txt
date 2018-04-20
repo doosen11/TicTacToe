@@ -33,6 +33,7 @@ C:\Users\EE Student\Desktop\TicTacToe\TicTacToeClient\Client_Async_PubChat\obj\D
 C:\Users\EE Student\Desktop\TicTacToe\TicTacToeClient\Client_Async_PubChat\obj\Debug\TTTClient.csproj.GenerateResource.Cache
 C:\Users\EE Student\Desktop\TicTacToe\TicTacToeClient\Client_Async_PubChat\bin\Debug\TTTClient.exe
 C:\Users\EE Student\Desktop\TicTacToe\TicTacToeClient\Client_Async_PubChat\bin\Debug\TTTClient.pdb
+<<<<<<< HEAD
 C:\Users\Networks Class\Desktop\TicTacToe\TicTacToeClient\Client_Async_PubChat\bin\Debug\TTTClient.exe.config
 C:\Users\Networks Class\Desktop\TicTacToe\TicTacToeClient\Client_Async_PubChat\obj\Debug\TTTClient.exe
 C:\Users\Networks Class\Desktop\TicTacToe\TicTacToeClient\Client_Async_PubChat\obj\Debug\TTTClient.pdb
@@ -42,3 +43,8 @@ C:\Users\Networks Class\Desktop\TicTacToe\TicTacToeClient\Client_Async_PubChat\o
 C:\Users\Networks Class\Desktop\TicTacToe\TicTacToeClient\Client_Async_PubChat\obj\Debug\TTTClient.Form1.resources
 C:\Users\Networks Class\Desktop\TicTacToe\TicTacToeClient\Client_Async_PubChat\obj\Debug\TTTClient.Properties.Resources.resources
 C:\Users\Networks Class\Desktop\TicTacToe\TicTacToeClient\Client_Async_PubChat\obj\Debug\TTTClient.csproj.GenerateResource.Cache
+=======
+C:\Users\Garrett\Documents\GitHub\TicTacToe\TicTacToeClient\Client_Async_PubChat\bin\Debug\TTTClient.exe.config
+C:\Users\Garrett\Documents\GitHub\TicTacToe\TicTacToeClient\Client_Async_PubChat\obj\Debug\TTTClient.exe
+C:\Users\Garrett\Documents\GitHub\TicTacToe\TicTacToeClient\Client_Async_PubChat\obj\Debug\TTTClient.pdb
+>>>>>>> d302dbe0d1b9a6146506ca8124e32ccb47bf1f92
