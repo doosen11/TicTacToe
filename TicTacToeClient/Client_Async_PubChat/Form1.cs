@@ -39,9 +39,16 @@ namespace TTTClient
         int secret_piece_number = 0; //0 by default. The client who requested the game will always be O (0)for now. X = 1, O = 0.
         int wincount = 0;
         int drawcount = 0;
+        int losscount = 0;
+        int totalcount = 0;
         bool gamedone = false;
         private void btnConnect_Click(object sender, EventArgs e)
         {
+            texttotal.Text = "Total Games Played: " + totalcount.ToString();
+            textwin.Text = "Wins: " + wincount.ToString();
+            textdraw.Text = "Draws: " + drawcount.ToString();
+            textloss.Text = "Losses: " + losscount.ToString();
+
             txtServerIP.Enabled = false;
             //read-in username from user
             //do
@@ -49,12 +56,10 @@ namespace TTTClient
             myusername = Microsoft.VisualBasic.Interaction.InputBox("Enter Username:", "User Login", "");
             Application.DoEvents();
             //while (myusername == "");
-            ///////////////////////////////////////////////
             if (myusername == "")
             {
                 myusername = "User";
             }
-            ///////////////////////////////////////////////
             userName.Text = myusername;
             Application.DoEvents();
 
@@ -133,6 +138,9 @@ namespace TTTClient
                             player_status = "Playing";
                             msg = myusername + ">" + "server>" + "accept_game" + ">" + msg_rec[3] + ">";
                             enableButtons();
+                            clearButtons();
+                            turn_count = 0;
+                            totalcount++;
 
                             secret_piece_number = 1;//player is now X
                         }
@@ -297,7 +305,9 @@ namespace TTTClient
              *************************************************** */
             allenableButtons();
             clearButtons();
+            totalcount++;
             if (myusername == "") return;
+            turn_count = 0;
             // if (player_status == "Playing") return;//shouldn't ever happen if the button gets disabled properly
             ReqUser = Microsoft.VisualBasic.Interaction.InputBox("Enter Username: ", "User Login", ""); ;
             //string temp = lstUsers.SelectedItem.ToString().Substring(0, lstUsers.SelectedItem.ToString().Length - 13);
@@ -413,35 +423,43 @@ namespace TTTClient
             if ((TTT_button_0.Text == TTT_button_1.Text) && (TTT_button_1.Text == TTT_button_2.Text) && (TTT_button_0.Text != "")) {
                 winning_piece = TTT_button_0.Text;
                 winner = true;
+                wincount++;
             }
             else if ((TTT_button_3.Text == TTT_button_4.Text) && (TTT_button_4.Text == TTT_button_5.Text) && (TTT_button_3.Text != "")) {
                 winning_piece = TTT_button_3.Text;
                 winner = true;
+                wincount++;
             }
             else if ((TTT_button_6.Text == TTT_button_7.Text) && (TTT_button_7.Text == TTT_button_8.Text) && (TTT_button_6.Text != "")) {
                 winning_piece = TTT_button_6.Text;
                 winner = true;
+                wincount++;
             }
             else if ((TTT_button_0.Text == TTT_button_4.Text) && (TTT_button_4.Text == TTT_button_8.Text) && (TTT_button_0.Text != "")) {
                 winning_piece = TTT_button_0.Text;
                 winner = true;
+                wincount++;
             }
             else if ((TTT_button_2.Text == TTT_button_4.Text) && (TTT_button_4.Text == TTT_button_6.Text) && (TTT_button_2.Text != "")) {
                 winning_piece = TTT_button_2.Text;
                 winner = true;
+                wincount++;
             }
 
             else if ((TTT_button_2.Text == TTT_button_5.Text) && (TTT_button_5.Text == TTT_button_8.Text) && (TTT_button_5.Text != "")) {
                 winning_piece = TTT_button_2.Text;
                 winner = true;
+                wincount++;
             }
             else if ((TTT_button_1.Text == TTT_button_4.Text) && (TTT_button_4.Text == TTT_button_7.Text) && (TTT_button_1.Text != "")) {
                 winning_piece = TTT_button_1.Text;
                 winner = true;
+                wincount++;
             }
             else if ((TTT_button_0.Text == TTT_button_3.Text) && (TTT_button_3.Text == TTT_button_6.Text) && (TTT_button_0.Text != "")) {
                 winning_piece = TTT_button_0.Text;
                 winner = true;
+                wincount++;
             }
             else {
                 //count++;
@@ -588,7 +606,7 @@ namespace TTTClient
 
         private void button2_Click(object sender, EventArgs e)
         {
-            
+            clearButtons();
             string msg = myusername + ">" + "server" + ">end_game>" + opponent + ">";
             byte[] bin_msg = Encoding.ASCII.GetBytes(msg);
             try

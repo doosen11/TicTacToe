@@ -185,7 +185,14 @@ namespace TTTServer
                             send_to_client(two_sock.msock, hmmm);
                         }
                         else {
-                            two_sock.took_turn_last = false;
+                            try
+                            {
+                                two_sock.took_turn_last = false;
+                            }
+                            catch (SocketException ex)
+                            {
+                                MessageBox.Show(ex.Message.ToString());
+                            }
                             string hmmm = "CHEATER" + ">" + "server" + ">cheating>" + turn_number.ToString() + ">" + msg_fields[5];
                             send_to_client(one_sock.msock, hmmm);
                             //send_to_client(two_sock.msock, hmmm);

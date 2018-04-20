@@ -14,3 +14,4 @@ C:\Users\dsimo\Documents\GitHub\TicTacToe\TicTacToeClient\Client_Async_PubChat\b
 C:\Users\dsimo\Documents\GitHub\TicTacToe\TicTacToeClient\Client_Async_PubChat\obj\Debug\TTTClient.Form1.resources
 C:\Users\dsimo\Documents\GitHub\TicTacToe\TicTacToeClient\Client_Async_PubChat\obj\Debug\TTTClient.Properties.Resources.resources
 C:\Users\dsimo\Documents\GitHub\TicTacToe\TicTacToeClient\Client_Async_PubChat\obj\Debug\TTTClient.csproj.GenerateResource.Cache
+C:\Users\dsimo\Documents\GitHub\TicTacToe\TicTacToeClient\Client_Async_PubChat\obj\Debug\TTTClient.csprojResolveAssemblyReference.cache
