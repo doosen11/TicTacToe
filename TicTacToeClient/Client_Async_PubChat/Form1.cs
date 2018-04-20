@@ -235,9 +235,22 @@ namespace TTTClient
             string msg = myusername + ">" + "server" + ">logout>";
           
             byte[] bin_msg = Encoding.ASCII.GetBytes(msg);
-            _client.Send(bin_msg);
-
-            _client.Shutdown(SocketShutdown.Both);
+            try
+            {
+                _client.Send(bin_msg);
+            }
+            catch (SocketException ex)
+            {
+                Application.Exit();
+            }
+            try
+            {
+                _client.Shutdown(SocketShutdown.Both);
+            }
+            catch (SocketException ex)
+            {
+                Application.Exit();
+            }
             _client.Close();
             Application.Exit();
         }
@@ -273,7 +286,14 @@ namespace TTTClient
             //player_status = "Playing";
             string msg = myusername + ">" + "server" + ">request_game>" + ReqUser + ">";
             byte[] bin_msg = Encoding.ASCII.GetBytes(msg);
-            _client.Send(bin_msg);
+            try
+            {
+                _client.Send(bin_msg);
+            }
+            catch (SocketException ex)
+            {
+                MessageBox.Show(ex.Message.ToString());
+            }
         }
 
         private void button_handeling(Button caller) {
@@ -515,7 +535,14 @@ namespace TTTClient
             byte[] bin_msg = Encoding.ASCII.GetBytes(msg);
             try
             {
-                _client.Send(bin_msg);
+                try
+                {
+                    _client.Send(bin_msg);
+                }
+                catch (SocketException ex)
+                {
+                    MessageBox.Show(ex.Message.ToString());
+                }
             }
             catch (NullReferenceException ex)
             {
