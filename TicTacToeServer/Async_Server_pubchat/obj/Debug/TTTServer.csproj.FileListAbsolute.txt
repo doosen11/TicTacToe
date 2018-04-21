@@ -52,3 +52,4 @@ C:\Users\Networks Class\Desktop\TicTacToe\TicTacToeServer\Async_Server_pubchat\o
 C:\Users\Networks Class\Desktop\TicTacToe\TicTacToeServer\Async_Server_pubchat\obj\Debug\TTTServer.csproj.GenerateResource.Cache
 =======
 >>>>>>> d302dbe0d1b9a6146506ca8124e32ccb47bf1f92
+C:\Users\Dawson\Documents\GitHub\TicTacToe2\TicTacToeServer\Async_Server_pubchat\bin\Debug\TTTServer.exe.config
